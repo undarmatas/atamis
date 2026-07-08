@@ -1,0 +1,1286 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<!--
+  TONE: "cinematic engineering monograph, daylight edition" — warm bone-paper canvas for
+  content, full-bleed dark photography/video for the hero, project deck and statement band,
+  precise mono meta-labels, one red accent (the dot from the atamis logo).
+  The site tells the story of the clients' projects, not the firm.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atamis — keičiame Lietuvą</title>
+<meta name="description" content="UAB „Atamis“ — inžinerinė bendrovė Vilniuje. Teritorijų planavimas, susisiekimo komunikacijos, inžinerinė infrastruktūra, architektūra, viešosios erdvės ir BIM projektai.">
+<meta name="theme-color" content="#F5F2ED">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Atamis">
+<meta property="og:title" content="Atamis — keičiame Lietuvą">
+<meta property="og:description" content="Inžinerinė bendrovė Vilniuje: teritorijų planavimas, susisiekimo komunikacijos, inžinerinė infrastruktūra, architektūra ir BIM. Daugiau nei 200 įgyvendintų projektų.">
+<meta property="og:image" content="assets/img/wide/neris-wide.jpg">
+<meta property="og:locale" content="lt_LT">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"UAB Atamis","url":"https://atamis.lt",
+ "logo":"assets/img/atamis-logo.png","foundingDate":"2006-05-02",
+ "telephone":"+370 5 2728 334","email":"info@atamis.lt",
+ "address":{"@type":"PostalAddress","streetAddress":"Žirmūnų g. 139","postalCode":"LT-09120","addressLocality":"Vilnius","addressCountry":"LT"},
+ "sameAs":["https://www.facebook.com/AtamisLT"]}
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E0D0C'/%3E%3Ccircle cx='32' cy='34' r='13' fill='%23B22D2F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  document.documentElement.classList.add('js');
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper:{ DEFAULT:'#F5F2ED', 2:'#FBF9F5', 3:'#EFE9E0' },
+          ink:  { DEFAULT:'#1D1915', dim:'#5F584E', 950:'#0E0D0C', 900:'#171514', 800:'#1F1C1A', 700:'#2A2624' },
+          bone: { DEFAULT:'#F4F1EC', dim:'#A8A19A', faint:'#6E675F' },
+          brand:{ DEFAULT:'#B22D2F', bright:'#E0574F' },
+          teal: { DEFAULT:'#2E5F6C', bright:'#9CC3CB' },
+        },
+        fontFamily: {
+          display: ['Archivo','sans-serif'],
+          body: ['"Instrument Sans"','sans-serif'],
+          mono: ['"IBM Plex Mono"','monospace'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  /* ---------- tokens & base ---------- */
+  :root{
+    --paper:#F5F2ED; --paper-2:#FBF9F5; --paper-3:#EFE9E0;
+    --ink-950:#0E0D0C; --ink-900:#171514; --ink-800:#1F1C1A;
+    --bone:#F4F1EC; --bone-dim:#A8A19A; --bone-faint:#6E675F;
+    --red:#B22D2F; --red-bright:#E0574F;
+    --teal:#2E5F6C; --teal-bright:#9CC3CB;
+    /* light context (default) */
+    --fg:#1D1915; --muted:#5F584E;
+    --hair:rgba(29,25,21,.14);
+    --dot:#B22D2F;
+    --accent2:#2E5F6C;
+    --ghost-hover:rgba(29,25,21,.05);
+    --pill:rgba(29,25,21,.08);
+    --ease-out:cubic-bezier(.22,1,.36,1);
+    --ease-expo:cubic-bezier(.19,1,.22,1);
+  }
+  /* dark scopes: photographic/cinematic surfaces keep the night palette */
+  .hero,.deck-panel,.band,footer,.card,.preloader{
+    color:var(--bone);
+    --fg:var(--bone); --muted:#A8A19A;
+    --hair:rgba(244,241,236,.14);
+    --dot:#E0574F;
+    --accent2:#9CC3CB;
+    --ghost-hover:rgba(244,241,236,.07);
+    --pill:rgba(244,241,236,.12);
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--fg);
+    font-family:"Instrument Sans",sans-serif; font-size:17px; line-height:1.7;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  /* ambient depth: two brand-tinted radials + warm shadow, all very low opacity */
+  .ambient{
+    position:fixed; inset:0; z-index:0; pointer-events:none; transform:translateZ(0);
+    background:
+      radial-gradient(900px 600px at 85% -10%, rgba(178,45,47,.07), transparent 60%),
+      radial-gradient(700px 700px at -10% 40%, rgba(46,95,108,.06), transparent 60%),
+      radial-gradient(1200px 800px at 50% 110%, rgba(29,25,21,.05), transparent 60%);
+  }
+  .grain{
+    position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.04;
+    transform:translateZ(0); /* own compositor layer — never repaints on scroll */
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  main,header,footer{position:relative; z-index:2}
+  ::selection{background:var(--red); color:var(--bone)}
+
+  h1,h2,h3,.display{font-family:Archivo,sans-serif}
+  .display-xl{font-weight:700; font-stretch:115%; letter-spacing:-.03em; line-height:1.02}
+  .display-lg{font-weight:650; font-stretch:112%; letter-spacing:-.025em; line-height:1.08}
+  .display-md{font-weight:600; font-stretch:110%; letter-spacing:-.02em; line-height:1.15}
+  .meta{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+  .sec-label{font-size:.95rem; letter-spacing:.18em}
+  .meta .dot,.dot{display:inline-block; width:.42em; height:.42em; border-radius:50%; background:var(--dot); vertical-align:.08em}
+  .stat-num{font-variant-numeric:tabular-nums; color:var(--accent2)}
+
+  /* ---------- interactive states (global) ---------- */
+  a,button{cursor:pointer}
+  :focus-visible{outline:2px solid var(--red-bright); outline-offset:3px; border-radius:2px}
+  .navlink{position:relative; color:var(--muted); transition:color .2s linear}
+  .navlink::after{content:""; position:absolute; left:0; width:100%; bottom:-4px; height:1px; background:var(--red);
+    transform:scaleX(0); transform-origin:left; transition:transform .25s var(--ease-out)}
+  .navlink:hover{color:var(--fg)}
+  .navlink:hover::after{transform:scaleX(1)}
+  .navlink:active{transform:translateY(1px)}
+  .logo-link{display:flex; align-items:center; transition:opacity .2s linear}
+  .logo-link:hover{opacity:.75}
+  .logo-link:active{transform:scale(.97)}
+  .btn{
+    display:inline-flex; align-items:center; gap:.6rem;
+    font-family:"IBM Plex Mono",monospace; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
+    padding:1rem 1.6rem; border-radius:999px;
+    transition:transform .2s var(--ease-out), box-shadow .2s var(--ease-out), background-color .2s linear, color .2s linear;
+  }
+  .btn-solid{background:var(--red); color:var(--bone);
+    box-shadow:0 1px 2px rgba(178,45,47,.25), 0 6px 18px rgba(178,45,47,.22), 0 18px 40px rgba(178,45,47,.14)}
+  .btn-solid:hover{transform:translateY(-2px); background:#c2383a;
+    box-shadow:0 2px 4px rgba(178,45,47,.3), 0 10px 26px rgba(178,45,47,.3), 0 26px 56px rgba(178,45,47,.18)}
+  .btn-solid:active{transform:translateY(0) scale(.98)}
+  .btn-ghost{border:1px solid var(--hair); color:var(--fg)}
+  .btn-ghost:hover{transform:translateY(-2px); background:var(--ghost-hover)}
+  .btn-ghost:active{transform:translateY(0) scale(.98)}
+
+  /* ---------- header (liquid-glass framed bar) ---------- */
+  /* a frosted glass pill floating over the page; JS toggles .over-light when it
+     sits above a light section, flipping palette, logo and glass tint */
+  .site-header{position:fixed; inset:0 0 auto 0; z-index:50; padding:.75rem .75rem 0;
+    --fg:var(--bone); --muted:#A8A19A; --pill:rgba(244,241,236,.12); --hair:rgba(244,241,236,.22);
+    /* glass tokens — dark frost over photography */
+    --glass-fill:rgba(18,16,14,.30); --glass-edge:rgba(244,241,236,.28);
+    --glass-rim:rgba(244,241,236,.42); --glass-lo:rgba(0,0,0,.22); --glass-sheen:rgba(244,241,236,.16)}
+  @media (min-width:768px){.site-header{padding:1rem 1rem 0}}
+  .header-bar{position:relative; overflow:hidden; border:1px solid var(--glass-edge); border-radius:16px;
+    background:var(--glass-fill);
+    -webkit-backdrop-filter:blur(12px) saturate(165%); backdrop-filter:blur(12px) saturate(165%);
+    box-shadow:0 1px 0 0 var(--glass-rim) inset, 0 -1px 1px 0 var(--glass-lo) inset,
+      0 10px 30px -8px rgba(14,13,12,.35);
+    transition:background-color .35s linear, border-color .35s linear, box-shadow .35s linear}
+  /* specular highlight sweeping across — transform-only, never repaints layout */
+  .header-bar > .glass-sheen{position:absolute; top:-20%; bottom:-20%; left:-40%; width:34%;
+    background:linear-gradient(100deg, transparent, var(--glass-sheen) 45%, transparent);
+    transform:translateX(0); pointer-events:none; z-index:0}
+  .js .header-bar > .glass-sheen{animation:sheen 9s ease-in-out infinite}
+  @keyframes sheen{0%,14%{transform:translateX(0)}70%,100%{transform:translateX(560%)}}
+  .header-bar > :not(.glass-sheen){position:relative; z-index:1}
+  .site-header.over-light,.menu-open .site-header,html:not(.js) .site-header{
+    --fg:#1D1915; --muted:#5F584E; --pill:rgba(29,25,21,.08); --hair:rgba(29,25,21,.2);
+    --glass-fill:rgba(251,249,245,.62); --glass-edge:rgba(29,25,21,.14);
+    --glass-rim:rgba(255,255,255,.9); --glass-lo:rgba(29,25,21,.06); --glass-sheen:rgba(255,255,255,.5)}
+  .logo-dark{display:none}
+  .site-header.over-light .logo-light,.menu-open .site-header .logo-light,html:not(.js) .site-header .logo-light{display:none}
+  .site-header.over-light .logo-dark,.menu-open .site-header .logo-dark,html:not(.js) .site-header .logo-dark{display:block}
+  .lang-btn{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.1em; padding:.35rem .6rem; border-radius:999px;
+    color:var(--muted); transition:color .15s linear, background-color .15s linear}
+  .lang-btn:hover{color:var(--fg)}
+  .lang-btn:active{transform:scale(.96)}
+  .lang-btn[aria-pressed="true"]{color:var(--fg); background:var(--pill)}
+
+  /* mobile menu */
+  .burger{width:44px; height:44px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+    border-radius:999px; transition:background-color .15s linear}
+  .burger:hover{background:var(--pill)}
+  .burger:active{transform:scale(.94)}
+  .burger span{display:block; width:22px; height:2px; background:var(--fg); border-radius:2px;
+    transition:transform .3s var(--ease-out), opacity .2s linear, background-color .3s linear}
+  .menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menu-open .burger span:nth-child(2){opacity:0}
+  .menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mobile-menu{position:fixed; inset:0; z-index:40; background:var(--paper);
+    display:flex; flex-direction:column; justify-content:center; padding:6rem 2rem 3rem;
+    opacity:0; visibility:hidden; transition:opacity .35s var(--ease-out), visibility 0s linear .35s}
+  .menu-open .mobile-menu{opacity:1; visibility:visible; transition:opacity .35s var(--ease-out)}
+  .mobile-menu a{opacity:0; transform:translateY(18px); color:var(--fg);
+    transition:transform .5s var(--ease-out), opacity .25s linear, color .2s linear}
+  .menu-open .mobile-menu a{opacity:1; transform:none}
+  .mobile-menu a:hover{color:var(--red)}
+  .mobile-menu a:active{opacity:.7}
+  .menu-open{overflow:hidden}
+
+  /* ---------- preloader ---------- */
+  .js .preloader{position:fixed; inset:0; z-index:80; background:var(--ink-950);
+    display:flex; align-items:center; justify-content:center; gap:.6rem;
+    transition:opacity .6s var(--ease-out), visibility 0s linear .6s}
+  .js .preloader.done{opacity:0; visibility:hidden; pointer-events:none}
+  html:not(.js) .preloader{display:none}
+  .preloader img{height:30px; width:auto}
+  .pulse{width:10px; height:10px; border-radius:50%; background:var(--red-bright); animation:pulse 1s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(.7); opacity:.5}50%{transform:scale(1); opacity:1}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative; height:100svh; min-height:600px; overflow:hidden}
+  .hero-media{position:absolute; inset:0; will-change:transform}
+  .hero-media video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    transform:scale(1.12); transition:transform 2.8s var(--ease-expo)}
+  .hero-in .hero-media video{transform:scale(1)}
+  .hero-shade{position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(14,13,12,.92) 0%, rgba(14,13,12,.35) 40%, rgba(14,13,12,.25) 100%)}
+  @media (max-width:767px){
+    .hero-shade{background:linear-gradient(to top, rgba(14,13,12,.95) 0%, rgba(14,13,12,.62) 45%, rgba(14,13,12,.35) 100%)}
+  }
+  /* plain alpha overlays — mix-blend-mode forces Safari to re-composite the full
+     surface every frame and was the main source of scroll stutter */
+  .hero-tint{position:absolute; inset:0; background:linear-gradient(135deg, rgba(178,45,47,.14), rgba(38,80,92,.24))}
+  .hero-vignette{position:absolute; inset:0; background:radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(14,13,12,.55) 100%)}
+  /* masked word reveal */
+  .hw{display:inline-block; overflow:hidden; vertical-align:top; padding-bottom:.08em; margin-bottom:-.08em}
+  .hw i{display:inline-block; font-style:normal}
+  .js .hw i{transform:translateY(115%);
+    transition:transform 1.1s var(--ease-expo); transition-delay:var(--d,0s)}
+  .js .hero-in .hw i{transform:translateY(0)}
+  .js .hero-fade{opacity:0; transform:translateY(18px); transition:opacity .5s linear, transform .9s var(--ease-out); transition-delay:var(--d,0s)}
+  .js .hero-in .hero-fade{opacity:1; transform:none}
+  .scroll-cue{position:absolute; bottom:0; left:50%; width:1px; height:64px; background:var(--hair); overflow:hidden}
+  .scroll-cue::after{content:""; position:absolute; left:0; top:0; width:100%; height:40%;
+    background:var(--red-bright); animation:cue 2s var(--ease-out) infinite}
+  @keyframes cue{0%{transform:translateY(-100%)}70%,100%{transform:translateY(280%)}}
+  .vid-toggle{position:absolute; right:1.25rem; bottom:1.25rem; z-index:5;
+    width:44px; height:44px; display:grid; place-items:center; border-radius:999px;
+    background:rgba(14,13,12,.6); /* no backdrop blur — it re-filters every video frame */
+    color:var(--bone); transition:background-color .15s linear, transform .15s var(--ease-out)}
+  .vid-toggle:hover{background:rgba(14,13,12,.85)}
+  .vid-toggle:active{transform:scale(.94)}
+  .vt-pause{display:block; width:10px; height:12px; border-left:3px solid currentColor; border-right:3px solid currentColor}
+  .vt-play{display:none; width:0; height:0; border-style:solid; border-width:7px 0 7px 11px;
+    border-color:transparent transparent transparent currentColor; margin-left:2px}
+  .vid-toggle.paused .vt-pause{display:none}
+  .vid-toggle.paused .vt-play{display:block}
+
+  /* ---------- scroll reveals ---------- */
+  .js .rv{opacity:0; transform:translateY(24px); transition:transform .9s var(--ease-out), opacity .4s linear; transition-delay:var(--d,0s)}
+  .js .rv.in{opacity:1; transform:none}
+  .js .mask{display:block; overflow:hidden}
+  .js .mask>span{display:block; transform:translateY(110%); transition:transform 1s var(--ease-expo); transition-delay:var(--d,0s)}
+  .js .mask.in>span{transform:none}
+  .hairline{height:1px; background:var(--hair)}
+  /* skip rendering below-fold sections until they approach the viewport */
+  .cv{content-visibility:auto; contain-intrinsic-size:auto 900px}
+
+  /* ---------- deck (stacked project chapters) ---------- */
+  .deck-panel{position:sticky; top:0; height:100svh; min-height:560px; overflow:hidden}
+  .deck-media{position:absolute; inset:0} /* no will-change: 6 promoted full-screen layers would eat GPU memory */
+  .deck-media img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+  .deck-shade{position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(14,13,12,.94) 8%, rgba(14,13,12,.30) 55%, rgba(14,13,12,.30) 82%, rgba(14,13,12,.52) 100%)}
+  .deck-tint{position:absolute; inset:0; background:linear-gradient(160deg, rgba(178,45,47,.10), rgba(38,80,92,.18))}
+  /* staggered caption entrance — the cheap eye-catcher that replaced the per-frame
+     scale/dim of six full-screen layers */
+  .js .deck-cap > *{opacity:0; transform:translateY(26px);
+    transition:transform .8s var(--ease-out), opacity .35s linear}
+  .js .deck-panel.in .deck-cap > *{opacity:1; transform:none}
+  .deck-cap > *:nth-child(2){transition-delay:.08s}
+  .deck-cap > *:nth-child(3){transition-delay:.16s}
+  .deck-cap > *:nth-child(4){transition-delay:.24s}
+  .deck-cap > *:nth-child(5){transition-delay:.32s}
+  .deck-index{font-family:"IBM Plex Mono",monospace; color:var(--accent2)}
+  .chip{display:inline-flex; align-items:center; gap:.5rem; font-family:"IBM Plex Mono",monospace;
+    font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--bone);
+    border:1px solid rgba(244,241,236,.22); border-radius:999px; padding:.45rem .9rem;
+    background:rgba(14,13,12,.5)} /* solid — backdrop blur over images is a per-frame GPU cost */
+
+  /* ---------- project grid ---------- */
+  .card{position:relative; display:block; width:100%; overflow:hidden; border-radius:4px; text-align:left;
+    cursor:zoom-in; isolation:isolate}
+  .card img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0;
+    transition:transform .8s var(--ease-out)}
+  .card::after{content:""; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(to top, rgba(14,13,12,.88) 0%, rgba(14,13,12,.18) 45%, rgba(14,13,12,.05) 100%);
+    transition:opacity .3s linear}
+  .card .card-tint{position:absolute; inset:0; background:linear-gradient(150deg, rgba(178,45,47,.08), rgba(38,80,92,.16))}
+  .card:hover img{transform:scale(1.05)}
+  .card:active img{transform:scale(1.02)}
+  .card-body{position:absolute; inset:auto 0 0 0; z-index:2; padding:1.5rem;
+    transform:translateY(4px); transition:transform .4s var(--ease-out)}
+  .card:hover .card-body{transform:none}
+
+  /* ---------- project marquee (auto-sliding "wall of work") ---------- */
+  /* one continuous GPU transform on a single track — no per-frame JS, no blend
+     modes; two identical copies + translateX(-50%) = seamless loop */
+  .marquee{position:relative; overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)}
+  .marquee-track{display:flex; width:max-content; will-change:transform}
+  .js .marquee-track{animation:marq var(--marq-dur,64s) linear infinite}
+  .marquee:hover .marquee-track,.marquee:focus-within .marquee-track{animation-play-state:paused}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  /* the trailing gap lives on each slide so both copies measure identically */
+  .slide{flex:0 0 auto; width:clamp(18rem,36vw,29rem); margin-right:1.5rem}
+  @media (max-width:767px){.slide{width:85vw; margin-right:1rem}}
+
+  /* ---------- clients ---------- */
+  .client-tile{display:flex; align-items:center; justify-content:center; padding:1.75rem 1.25rem;
+    background:var(--paper-2); border:1px solid rgba(29,25,21,.10); border-radius:8px;
+    box-shadow:0 1px 2px rgba(178,45,47,.05), 0 6px 16px rgba(29,25,21,.06), 0 16px 32px rgba(29,25,21,.04);
+    transition:transform .25s var(--ease-out), border-color .25s linear}
+  .client-tile:hover{transform:translateY(-3px); border-color:rgba(29,25,21,.22)}
+  .client-tile img{max-height:44px; width:auto; max-width:100%;
+    filter:grayscale(1); opacity:.72; transition:opacity .25s linear}
+  .client-tile:hover img{filter:none; opacity:1}
+
+  /* ---------- statement band ---------- */
+  .band{position:relative; overflow:hidden}
+  .band-media{position:absolute; inset:-12% 0; will-change:transform}
+  .band-media img{width:100%; height:100%; object-fit:cover}
+  .band-shade{position:absolute; inset:0; background:rgba(14,13,12,.68)}
+  .band-tint{position:absolute; inset:0; background:linear-gradient(120deg, rgba(178,45,47,.12), rgba(38,80,92,.22))}
+  .band .meta{color:var(--fg)} /* AA: #A8A19A washes out over the photo's bright sky */
+
+  /* ---------- media frames ---------- */
+  .frame{position:relative; overflow:hidden; border-radius:4px; border:1px solid var(--hair)}
+  .frame img{display:block; width:100%; height:100%; object-fit:cover}
+  .frame::after{content:""; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(14,13,12,.45), transparent 55%)}
+  .frame .frame-tint{position:absolute; inset:0; background:linear-gradient(140deg, rgba(178,45,47,.07), rgba(38,80,92,.13))}
+
+  /* ---------- services accordion ---------- */
+  .svc{border-top:1px solid var(--hair)}
+  .svc:last-of-type{border-bottom:1px solid var(--hair)}
+  .svc summary{display:grid; grid-template-columns:2.75rem 1fr 1.5rem; align-items:center; gap:1rem;
+    padding:1.5rem 0; cursor:pointer; list-style:none}
+  .svc summary::-webkit-details-marker{display:none}
+  .svc summary .meta{color:var(--accent2)}
+  .svc summary h3{transition:transform .3s var(--ease-out), color .2s linear}
+  .svc summary:hover h3{transform:translateX(8px)}
+  .svc summary:active h3{transform:translateX(4px)}
+  .svc-icon{position:relative; width:14px; height:14px; justify-self:end}
+  .svc-icon::before,.svc-icon::after{content:""; position:absolute; left:0; top:6px; width:14px; height:2px;
+    background:var(--accent2); border-radius:2px; transition:transform .3s var(--ease-out)}
+  .svc-icon::after{transform:rotate(90deg)}
+  .svc[open] .svc-icon::after{transform:rotate(0deg)}
+  .svc[open] summary h3{color:var(--red)}
+  .svc-body{padding:0 0 2.25rem; margin-left:0}
+  .js .svc[open] .svc-body{animation:svcIn .5s var(--ease-out)}
+  @keyframes svcIn{from{opacity:0; transform:translateY(-8px)}to{opacity:1; transform:none}}
+  .svc-list-item{display:flex; gap:.75rem; align-items:baseline}
+  @media (min-width:768px){
+    .svc summary{grid-template-columns:3.5rem 1fr 2rem}
+    .svc-body{margin-left:4.5rem}
+  }
+
+  /* ---------- lightbox ---------- */
+  dialog.lightbox{background:transparent; border:none; padding:0; max-width:min(92vw,1100px); width:100%;
+    max-height:92vh; overflow-y:auto}
+  dialog.lightbox::backdrop{background:rgba(14,13,12,.9); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px)}
+  .lightbox figure{margin:0}
+  .lightbox img{width:100%; height:auto; max-height:58vh; object-fit:cover; border-radius:6px}
+  .lightbox-sheet{background:var(--paper-2); color:var(--fg); border:1px solid rgba(29,25,21,.12); border-radius:6px;
+    padding:1.5rem; margin-top:.9rem}
+  .lightbox-close{position:absolute; top:12px; right:12px; z-index:2;
+    width:44px; height:44px; display:grid; place-items:center; border-radius:999px;
+    background:rgba(14,13,12,.7); color:var(--bone); font-size:1.1rem;
+    transition:background-color .15s linear, transform .15s var(--ease-out)}
+  .lightbox-close:hover{background:rgba(14,13,12,.9)}
+  .lightbox-close:active{transform:scale(.94)}
+
+  /* ---------- language visibility ---------- */
+  /* text swapping is data-en driven in JS; these classes are for the pre-split hero title */
+  html[lang="en"] .only-lt{display:none}
+  html:not([lang="en"]) .only-en{display:none}
+
+  /* ---------- short viewports ---------- */
+  @media (max-height:620px){
+    .deck-facts{display:none}
+  }
+
+  /* ---------- reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .js .rv,.js .mask>span,.js .hw i,.js .hero-fade,.js .deck-cap > *{opacity:1 !important; transform:none !important; transition:none !important}
+    .hero-media video{transform:none; transition:none}
+    .pulse,.scroll-cue::after{animation:none}
+    .card img,.card-body{transition:none}
+    .mobile-menu,.mobile-menu a,.burger span{transition:none}
+    .js .mobile-menu a{opacity:1; transform:none}
+    .btn,.client-tile,.navlink::after,.lightbox-close,.vid-toggle,.svc summary h3{transition:none}
+    .btn-solid:hover,.btn-ghost:hover,.client-tile:hover,.svc summary:hover h3{transform:none}
+    .js .svc[open] .svc-body{animation:none}
+    .js .header-bar > .glass-sheen{animation:none}
+    .js .marquee-track{animation:none}
+    .marquee{overflow-x:auto; -webkit-overflow-scrolling:touch}
+  }
+</style>
+</head>
+<body class="font-body bg-paper text-ink">
+
+<a href="#turinys" class="sr-only focus:not-sr-only focus:absolute focus:z-[90] focus:top-4 focus:left-4 btn btn-solid" data-en="Skip to content">Pereiti prie turinio</a>
+
+<div class="ambient" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="preloader" aria-hidden="true">
+  <img src="assets/img/atamis-logo-white.png" alt="">
+  <span class="pulse"></span>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="header-bar max-w-[1400px] mx-auto flex items-center justify-between px-5 md:px-7 h-[60px]">
+    <span class="glass-sheen" aria-hidden="true"></span>
+    <a href="#virsus" class="logo-link shrink-0" aria-label="Atamis — į pradžią" data-en-aria="Atamis — back to top">
+      <img src="assets/img/atamis-logo-white.png" alt="Atamis" class="logo-light h-[26px] w-auto">
+      <img src="assets/img/atamis-logo.png" alt="" aria-hidden="true" class="logo-dark h-[26px] w-auto">
+    </a>
+    <nav class="hidden md:flex items-center gap-9 text-[.92rem]" aria-label="Pagrindinė navigacija" data-en-aria="Primary navigation">
+      <a class="navlink" href="#studija" data-en="Studio">Studija</a>
+      <a class="navlink" href="#paslaugos" data-en="Services">Paslaugos</a>
+      <a class="navlink" href="#projektai" data-en="Projects">Projektai</a>
+      <a class="navlink" href="#klientai" data-en="Clients">Klientai</a>
+      <a class="navlink" href="#kontaktai" data-en="Contact">Kontaktai</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-1 border border-[var(--hair)] rounded-full p-1" role="group" aria-label="Kalba / Language">
+        <button class="lang-btn" data-lang="lt" aria-pressed="true">LT</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="burger md:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Meniu" data-en-aria="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div class="mobile-menu md:hidden" id="mobile-menu">
+  <nav class="flex flex-col gap-2" aria-label="Mobilioji navigacija" data-en-aria="Mobile navigation">
+    <a class="display-lg text-4xl py-3" style="transition-delay:.05s" href="#studija" data-en="Studio">Studija</a>
+    <a class="display-lg text-4xl py-3" style="transition-delay:.11s" href="#paslaugos" data-en="Services">Paslaugos</a>
+    <a class="display-lg text-4xl py-3" style="transition-delay:.17s" href="#projektai" data-en="Projects">Projektai</a>
+    <a class="display-lg text-4xl py-3" style="transition-delay:.23s" href="#klientai" data-en="Clients">Klientai</a>
+    <a class="display-lg text-4xl py-3" style="transition-delay:.29s" href="#kontaktai" data-en="Contact">Kontaktai</a>
+  </nav>
+  <p class="meta mt-12">Žirmūnų g. 139, Vilnius · +370 5 2728 334</p>
+</div>
+
+<main id="turinys">
+<!-- ================= HERO ================= -->
+<section class="hero" id="virsus">
+  <div class="hero-media">
+    <video autoplay muted loop playsinline preload="metadata" poster="assets/video/atamis-hero-poster.jpg">
+      <source src="assets/video/atamis-hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-tint" aria-hidden="true"></div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-vignette" aria-hidden="true"></div>
+
+  <div class="relative h-full max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col justify-end pb-24 md:pb-28">
+    <p class="meta hero-fade" style="--d:.55s">
+      <span class="dot mr-2" aria-hidden="true"></span>
+      <span data-en="Engineering company · Vilnius · since 2006">Inžinerinė bendrovė · Vilnius · nuo 2006 m.</span>
+    </p>
+    <h1 class="display-xl mt-6 text-[clamp(2.8rem,8.4vw,7.5rem)]">
+      <span class="only-lt">
+        <span class="hw"><i style="--d:.15s">Keičiame</i></span><br>
+        <span class="hw"><i style="--d:.3s">Lietuvą</i></span>
+      </span>
+      <span class="only-en">
+        <span class="hw"><i style="--d:.15s">Reshaping</i></span><br>
+        <span class="hw"><i style="--d:.3s">Lithuania</i></span>
+      </span>
+    </h1>
+    <div class="mt-8 md:flex md:items-end md:justify-between">
+      <p class="hero-fade text-bone-dim max-w-[46ch] text-[1.05rem]" style="--d:.7s"
+         data-en="More than 200 projects — from streets to master plans.">
+        Daugiau nei 200 projektų — nuo gatvių iki bendrųjų planų.</p>
+      <div class="hero-fade flex flex-wrap gap-4 mt-8 md:mt-0" style="--d:.85s">
+        <a href="#projektai" class="btn btn-solid" data-en="View projects">Žiūrėti projektus</a>
+        <a href="#kontaktai" class="btn btn-ghost" data-en="Get in touch">Susisiekti</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+  <button class="vid-toggle" aria-label="Pristabdyti vaizdo įrašą">
+    <span class="vt-pause" aria-hidden="true"></span><span class="vt-play" aria-hidden="true"></span>
+  </button>
+</section>
+
+<!-- ================= 01 STUDIJA ================= -->
+<section id="studija" class="scroll-mt-20 py-24 md:py-32">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="meta sec-label rv"><span class="dot mr-2" aria-hidden="true"></span><span data-en="01 — Studio">01 — Studija</span></p>
+    <div class="mt-10 grid md:grid-cols-12 gap-12 md:gap-8 items-start">
+      <div class="md:col-span-7">
+        <h2 class="display-lg text-[clamp(2.3rem,5vw,4.3rem)] max-w-[20ch]">
+          <span class="mask"><span data-en="Vilnius engineers">Vilniaus inžinieriai</span></span>
+        </h2>
+        <p class="rv mt-8 text-ink-dim max-w-[62ch]" style="--d:.15s"
+           data-en="Atamis is a Vilnius-based engineering company working since 2006 across territorial planning, transport infrastructure, engineering infrastructure, architecture, public spaces and BIM. Every project is delivered with BIM methodology — from the first sketch to construction supervision.">
+          „Atamis“ — Vilniuje įsikūrusi inžinerinė bendrovė, nuo 2006 m. dirbanti teritorijų planavimo,
+          susisiekimo komunikacijų, inžinerinės infrastruktūros, architektūros, viešųjų erdvių ir
+          BIM srityse. Projektus rengiame taikydami BIM metodiką — nuo pirmojo eskizo iki
+          statybos priežiūros.</p>
+        <div class="rv mt-14 grid grid-cols-3 gap-6 max-w-xl" style="--d:.25s">
+          <div>
+            <p class="display-md stat-num text-[clamp(1.8rem,3.4vw,2.8rem)]" data-count="2006">0</p>
+            <p class="meta mt-2" data-en="Founded in Vilnius">Įkurta Vilniuje</p>
+          </div>
+          <div>
+            <p class="display-md stat-num text-[clamp(1.8rem,3.4vw,2.8rem)]"><span data-count="200">0</span>+</p>
+            <p class="meta mt-2" data-en="Delivered projects">Įgyvendintų projektų</p>
+          </div>
+          <div>
+            <p class="display-md stat-num text-[clamp(1.8rem,3.4vw,2.8rem)]" data-count="6">0</p>
+            <p class="meta mt-2" data-en="Disciplines">Veiklos sritys</p>
+          </div>
+        </div>
+      </div>
+      <figure class="md:col-span-5 rv" style="--d:.2s">
+        <div class="frame aspect-[4/3]">
+          <img src="assets/img/studio/studio-team.jpg" alt="„Atamis“ komanda dirba studijoje" data-en-alt="The Atamis team at work in the studio" loading="lazy" decoding="async">
+          <div class="frame-tint" aria-hidden="true"></div>
+        </div>
+        <figcaption class="meta mt-4" data-en="The studio — Žirmūnų g. 139, Vilnius">Studija — Žirmūnų g. 139, Vilnius</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 PASLAUGOS ================= -->
+<section id="paslaugos" class="cv scroll-mt-20 pb-24 md:pb-32">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="hairline mb-16 md:mb-24"></div>
+    <p class="meta sec-label rv"><span class="dot mr-2" aria-hidden="true"></span><span data-en="02 — Services">02 — Paslaugos</span></p>
+    <div class="mt-10 md:flex md:items-end md:justify-between gap-10">
+      <h2 class="display-lg text-[clamp(2.3rem,5vw,4.3rem)]">
+        <span class="mask"><span data-en="The full cycle">Visas ciklas</span></span>
+      </h2>
+      <p class="rv mt-6 md:mt-0 text-ink-dim max-w-[38ch]" style="--d:.2s"
+         data-en="Five disciplines — one team.">
+        Penkios kryptys — viena komanda.</p>
+    </div>
+
+    <div class="mt-14">
+      <details class="svc rv" open>
+        <summary>
+          <span class="meta">01</span>
+          <h3 class="display-md text-[clamp(1.3rem,2.6vw,1.9rem)]" data-en="Architecture">Architektūra</h3>
+          <span class="svc-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="svc-body grid md:grid-cols-2 gap-8">
+          <p class="text-ink-dim max-w-[58ch]"
+             data-en="Aesthetics and a harmonious relationship with the surroundings — inside and out. The team has deep experience designing public, commercial and residential buildings and creating urban public spaces. What we design is aesthetic, rational, ergonomic and energy-efficient.">
+            Estetika ir harmoningas santykis su aplinka — tiek viduje, tiek išorėje. Komanda yra
+            sukaupusi didelę patirtį negyvenamųjų, visuomeninių ir gyvenamųjų pastatų projektavime
+            bei urbanistinių, visuomeninių erdvių kūrime. Kuriamos erdvės pasižymi estetika,
+            racionalumu, ergonomiškumu ir energetiniu efektyvumu.</p>
+          <ul class="grid gap-3 content-start">
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Design of public, commercial and residential buildings">Visuomeninių, komercinių ir gyvenamųjų pastatų projektavimas</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Public spaces, parks, squares and sports facilities">Viešosios erdvės, parkai, skverai ir sporto statiniai</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Interior design">Interjero projektavimas</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Professional consulting">Profesionalios konsultacijos</span></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="svc rv" style="--d:.05s">
+        <summary>
+          <span class="meta">02</span>
+          <h3 class="display-md text-[clamp(1.3rem,2.6vw,1.9rem)]" data-en="Engineering infrastructure">Inžinerinė infrastruktūra</h3>
+          <span class="svc-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="svc-body grid md:grid-cols-2 gap-8">
+          <p class="text-ink-dim max-w-[58ch]"
+             data-en="Design of water supply, wastewater, electricity, telecommunications and other utility networks, as well as hydro-engineering structures — well fields, water treatment facilities, dams and wastewater treatment plants. We also provide design supervision services.">
+            Vandentiekio, nuotekų šalinimo, elektros, ryšių ir kitų inžinerinių tinklų bei
+            hidrotechninių statinių — vandenviečių, vandenruošos statinių, užtvankų ir nuotekų
+            valyklų — projektavimas. Atliekame ir šių statinių projekto vykdymo priežiūrą.</p>
+          <ul class="grid gap-3 content-start">
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Water supply and wastewater networks (domestic, storm, drainage)">Vandentiekio ir nuotekų tinklai (buitinių, lietaus, drenažo)</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Electricity and telecommunications networks">Elektros ir ryšių tinklai</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Hydro-engineering structures: well fields, dams, treatment plants">Hidrotechniniai statiniai: vandenvietės, užtvankos, valyklos</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Design supervision, feasibility studies and consulting">Projekto vykdymo priežiūra, galimybių studijos, konsultacijos</span></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="svc rv" style="--d:.1s">
+        <summary>
+          <span class="meta">03</span>
+          <h3 class="display-md text-[clamp(1.3rem,2.6vw,1.9rem)]" data-en="Transport infrastructure">Susisiekimo komunikacijos</h3>
+          <span class="svc-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="svc-body grid md:grid-cols-2 gap-8">
+          <p class="text-ink-dim max-w-[58ch]"
+             data-en="Safe, modern and durable transport infrastructure starts with a good design. The department is staffed by qualified road, railway and urban engineering specialists, and the key criteria are traffic safety, capacity, convenience and durability.">
+            Saugios, šiuolaikiškos ir ilgaamžės susisiekimo komunikacijos prasideda nuo gero projekto.
+            Skyriuje dirba kvalifikuoti kelių, geležinkelių ir miestų inžinerijos specialistai, o
+            pagrindiniai vertinimo kriterijai — eismo saugumas, pralaidumas, patogumas ir
+            ilgaamžiškumas.</p>
+          <ul class="grid gap-3 content-start">
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Street and road designs of all categories">Visų kategorijų gatvių ir kelių projektai</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Traffic studies and modelling">Transporto eismo tyrimai ir modeliavimas</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Railway infrastructure projects">Geležinkelių infrastruktūros projektai</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Cycling and pedestrian infrastructure">Dviračių ir pėsčiųjų infrastruktūra</span></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="svc rv" style="--d:.15s">
+        <summary>
+          <span class="meta">04</span>
+          <h3 class="display-md text-[clamp(1.3rem,2.6vw,1.9rem)]" data-en="Territorial planning">Teritorijų planavimas</h3>
+          <span class="svc-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="svc-body grid md:grid-cols-2 gap-8">
+          <p class="text-ink-dim max-w-[58ch]"
+             data-en="Territorial planning shapes sustainable development and rational urbanisation, reconciling the natural and the built environment. It is the first stage of every construction project — the one that determines the success of everything that follows.">
+            Teritorijų planavimas formuoja darnią teritorijų plėtrą ir racionalią urbanizaciją,
+            suderina gamtinę ir antropogeninę aplinką. Tai pradinė kiekvieno statybos projekto
+            dalis, lemianti tolimesnių projektavimo stadijų sėkmę.</p>
+          <ul class="grid gap-3 content-start">
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Master plans and detailed plans">Bendrieji ir detalieji planai</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Special plans: protected areas, cultural heritage, infrastructure development">Specialieji planai: saugomų teritorijų, kultūros paveldo, infrastruktūros vystymo</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Strategic environmental assessment (SEA) documents">Strateginio pasekmių aplinkai vertinimo (SPAV) dokumentai</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Planning schemes, feasibility studies, monitoring and digitisation">Planavimo schemos, galimybių studijos, stebėsena ir skaitmenizavimas</span></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="svc rv" style="--d:.2s">
+        <summary>
+          <span class="meta">05</span>
+          <h3 class="display-md text-[clamp(1.3rem,2.6vw,1.9rem)]" data-en="BIM projects">BIM projektai</h3>
+          <span class="svc-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="svc-body grid md:grid-cols-2 gap-8">
+          <p class="text-ink-dim max-w-[58ch]"
+             data-en="BIM — Building Information Modelling — uses analysis and 3D visualisation to show how a building will look and perform before it is completed. It lets us work more precisely and efficiently, and helps avoid losses.">
+            BIM — statinio informacinis modeliavimas — analizės ir trimatės vizualizacijos
+            priemonėmis leidžia matyti, kaip statinys atrodys ir veiks dar prieš jį užbaigiant.
+            Tai leidžia dirbti tiksliau, efektyviau ir padeda išvengti nuostolių.</p>
+          <ul class="grid gap-3 content-start">
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Building and interior design in a BIM environment">Pastatų ir interjero projektavimas BIM aplinkoje</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Utility network design">Inžinerinių tinklų projektavimas</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Transport infrastructure design">Susisiekimo komunikacijų projektavimas</span></li>
+            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Reconstruction projects">Rekonstrukcijų projektai</span></li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 PROJEKTAI (deck) ================= -->
+<section id="projektai" class="scroll-mt-20">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 pb-16 md:pb-24">
+    <p class="meta sec-label rv"><span class="dot mr-2" aria-hidden="true"></span><span data-en="03 — Projects">03 — Projektai</span></p>
+    <div class="mt-10 md:flex md:items-end md:justify-between gap-10">
+      <h2 class="display-lg text-[clamp(2.3rem,5vw,4.3rem)]">
+        <span class="mask"><span data-en="Six projects.">Šeši projektai.</span></span>
+        <span class="mask"><span style="--d:.1s" data-en="Six disciplines.">Šešios sritys.</span></span>
+      </h2>
+      <p class="rv mt-6 md:mt-0 text-ink-dim max-w-[38ch]" style="--d:.2s"
+         data-en="One project for each discipline.">
+        Po vieną projektą kiekvienai sričiai.</p>
+    </div>
+  </div>
+
+  <div class="deck" id="deck">
+    <!-- 1 -->
+    <article class="deck-panel">
+      <div class="deck-media"><img src="assets/img/projects/taurages-baseinas.jpg" alt="Tauragės plaukimo baseino pastatas" loading="lazy" decoding="async"></div>
+      <div class="deck-tint" aria-hidden="true"></div>
+      <div class="deck-shade" aria-hidden="true"></div>
+      <div class="deck-cap relative h-full max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col justify-end pb-16 md:pb-20">
+        <p class="deck-index text-sm">01 / 06</p>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <span class="chip"><span class="dot" aria-hidden="true"></span><span data-en="Architecture">Architektūra</span></span>
+          <span class="chip">Tauragė</span>
+        </div>
+        <h3 class="display-lg mt-5 text-[clamp(1.9rem,5vw,4.2rem)] max-w-[16ch]" data-en="Tauragė Swimming Pool">Tauragės baseinas</h3>
+        <p class="mt-4 text-bone-dim max-w-[56ch]"
+           data-en="A former military-town culture building reconstructed into a sports complex that became the town's gathering place: a 25 m swimming pool, leisure and children's pools, three saunas and water attractions.">
+          Buvusio karinio miestelio kultūros pastato rekonstrukcija į sporto kompleksą, tapusį miesto
+          bendruomenės traukos centru: 25 m plaukimo baseinas, pramoginis ir vaikų baseinai, trys
+          pirtys ir vandens atrakcijos.</p>
+        <p class="deck-facts meta mt-5" data-en="25 m pool · 3 saunas · Reconstruction and new extension">25 m baseinas · 3 pirtys · Rekonstrukcija ir naujas priestatas</p>
+      </div>
+    </article>
+    <!-- 2 -->
+    <article class="deck-panel">
+      <div class="deck-media"><img src="assets/img/projects/policijos-komisariatas.jpg" alt="Vilniaus miesto policijos komisariato pastatas" loading="lazy" decoding="async"></div>
+      <div class="deck-tint" aria-hidden="true"></div>
+      <div class="deck-shade" aria-hidden="true"></div>
+      <div class="deck-cap relative h-full max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col justify-end pb-16 md:pb-20">
+        <p class="deck-index text-sm">02 / 06</p>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <span class="chip"><span class="dot" aria-hidden="true"></span><span data-en="BIM projects">BIM projektai</span></span>
+          <span class="chip">Vilnius</span>
+        </div>
+        <h3 class="display-lg mt-5 text-[clamp(1.9rem,5vw,4.2rem)] max-w-[18ch]" data-en="Vilnius City Police Commissariat">Vilniaus m. policijos komisariatas</h3>
+        <p class="mt-4 text-bone-dim max-w-[56ch]"
+           data-en="An administrative building of more than 9,750 m² on Sietyno Street, housing five of the capital's police units. Engineered with BIM at LOD 300–350 — from the building itself to the outdoor utility networks.">
+          Daugiau kaip 9 750 m² administracinis pastatas Sietyno gatvėje, kuriame įsikurs penki
+          sostinės policijos padaliniai. Projektas parengtas BIM metodika LOD 300–350 detalumu —
+          nuo paties pastato iki lauko inžinerinių tinklų.</p>
+        <p class="deck-facts meta mt-5" data-en="9,750 m² · BIM LOD 300–350 · Sietyno St 24, Vilnius">9 750 m² · BIM LOD 300–350 · Sietyno g. 24, Vilnius</p>
+      </div>
+    </article>
+    <!-- 3 -->
+    <article class="deck-panel">
+      <div class="deck-media"><img src="assets/img/projects/neries-krantine.jpg" alt="Neries krantinės viešoji erdvė Vilniuje" loading="lazy" decoding="async"></div>
+      <div class="deck-tint" aria-hidden="true"></div>
+      <div class="deck-shade" aria-hidden="true"></div>
+      <div class="deck-cap relative h-full max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col justify-end pb-16 md:pb-20">
+        <p class="deck-index text-sm">03 / 06</p>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <span class="chip"><span class="dot" aria-hidden="true"></span><span data-en="Public spaces">Viešosios erdvės</span></span>
+          <span class="chip">Vilnius</span>
+        </div>
+        <h3 class="display-lg mt-5 text-[clamp(1.9rem,5vw,4.2rem)] max-w-[16ch]" data-en="Neris Embankment, Section B">Neries krantinė, B atkarpa</h3>
+        <p class="mt-4 text-bone-dim max-w-[56ch]"
+           data-en="Detailed design for the section from Sluškų St to Šilo Bridge: rest areas, walking and cycling paths, preserved tree alleys — and on P. Vileišio Street, the first true bicycle street in Lithuania.">
+          Krantinės atkarpos nuo Sluškų g. iki Šilo tilto darbo projektas: poilsio aikštelės, pėsčiųjų
+          ir dviračių takai, išsaugotos medžių alėjos. P. Vileišio gatvėje įrengta pirmoji tikra
+          dviračių gatvė Lietuvoje.</p>
+        <p class="deck-facts meta mt-5" data-en="Lithuania's first bicycle street · Sluškų St — Šilo Bridge">Pirmoji dviračių gatvė Lietuvoje · Sluškų g. — Šilo tiltas</p>
+      </div>
+    </article>
+    <!-- 4 -->
+    <article class="deck-panel">
+      <div class="deck-media"><img src="assets/img/projects/panevezio-siaurine.jpg" alt="Panevėžio Šiaurinės gatvės rekonstrukcija" loading="lazy" decoding="async"></div>
+      <div class="deck-tint" aria-hidden="true"></div>
+      <div class="deck-shade" aria-hidden="true"></div>
+      <div class="deck-cap relative h-full max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col justify-end pb-16 md:pb-20">
+        <p class="deck-index text-sm">04 / 06</p>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <span class="chip"><span class="dot" aria-hidden="true"></span><span data-en="Transport infrastructure">Susisiekimo komunikacijos</span></span>
+          <span class="chip">Panevėžys</span>
+        </div>
+        <h3 class="display-lg mt-5 text-[clamp(1.9rem,5vw,4.2rem)] max-w-[16ch]" data-en="Šiaurinė Street, Panevėžys">Panevėžio Šiaurinė gatvė</h3>
+        <p class="mt-4 text-bone-dim max-w-[56ch]"
+           data-en="Stage one delivers the street section from Pramonės Street to Amerikos Street, with a new three-way intersection and a 6.50–7.00 m wide asphalt carriageway.">
+          Pirmuoju etapu įrengiama gatvės dalis nuo Pramonės iki Amerikos gatvės su nauja trišale
+          sankryža ir 6,50–7,00 m pločio asfalto važiuojamąja dalimi.</p>
+        <p class="deck-facts meta mt-5" data-en="Stage one · Three-way intersection · 6.5–7.0 m carriageway">1 etapas · Trišalė sankryža · 6,5–7,0 m važiuojamoji</p>
+      </div>
+    </article>
+    <!-- 5 -->
+    <article class="deck-panel">
+      <div class="deck-media"><img src="assets/img/projects/kupiskio-vandenys.jpg" alt="Kupiškio vandens gerinimo įrenginiai" loading="lazy" decoding="async"></div>
+      <div class="deck-tint" aria-hidden="true"></div>
+      <div class="deck-shade" aria-hidden="true"></div>
+      <div class="deck-cap relative h-full max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col justify-end pb-16 md:pb-20">
+        <p class="deck-index text-sm">05 / 06</p>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <span class="chip"><span class="dot" aria-hidden="true"></span><span data-en="Engineering infrastructure">Inžinerinė infrastruktūra</span></span>
+          <span class="chip">Kupiškis</span>
+        </div>
+        <h3 class="display-lg mt-5 text-[clamp(1.9rem,5vw,4.2rem)] max-w-[18ch]" data-en="Kupiškis Water Treatment Plant">Kupiškio vandens gerinimo įrenginiai</h3>
+        <p class="mt-4 text-bone-dim max-w-[56ch]"
+           data-en="A new water treatment plant with a fully automated process: a technological building, filters and process pipelines. Iron and manganese are removed using natural, ecological media — to drinking-water standards.">
+          Nauji vandens gerinimo įrenginiai su automatizuotu procesu: technologinis pastatas, filtrai
+          ir technologiniai vamzdynai. Geležis ir manganas šalinami gamtinės kilmės medžiagomis —
+          iki geriamojo vandens kokybės.</p>
+        <p class="deck-facts meta mt-5" data-en="Automated operation · Meets HN 24:2003 standard">Automatizuotas valdymas · Atitinka HN 24:2003</p>
+      </div>
+    </article>
+    <!-- 6 -->
+    <article class="deck-panel">
+      <div class="deck-media"><img src="assets/img/projects/birstono-planas.jpg" alt="Birštono kurorto panorama" loading="lazy" decoding="async"></div>
+      <div class="deck-tint" aria-hidden="true"></div>
+      <div class="deck-shade" aria-hidden="true"></div>
+      <div class="deck-cap relative h-full max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col justify-end pb-16 md:pb-20">
+        <p class="deck-index text-sm">06 / 06</p>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <span class="chip"><span class="dot" aria-hidden="true"></span><span data-en="Territorial planning">Teritorijų planavimas</span></span>
+          <span class="chip">Birštonas</span>
+        </div>
+        <h3 class="display-lg mt-5 text-[clamp(1.9rem,5vw,4.2rem)] max-w-[16ch]" data-en="Birštonas Resort Master Plan">Birštono kurorto bendrasis planas</h3>
+        <p class="mt-4 text-bone-dim max-w-[56ch]"
+           data-en="Amendments to the resort town's master plan: the territory zoned by land-use interests, with a dominant activity and a development direction defined for each zone.">
+          Kurorto bendrojo plano sprendinių keitimas: teritorija suskirstyta pagal žemės naudojimo
+          interesus, kiekvienai zonai apibrėžiant dominuojančią veiklą ir vystymo kryptį.</p>
+        <p class="deck-facts meta mt-5" data-en="Master plan amendment · Resort territory">Bendrojo plano keitimas · Kurorto teritorija</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= 03 DAUGIAU PROJEKTŲ ================= -->
+<section class="cv py-24 md:py-32">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="meta sec-label rv"><span class="dot mr-2" aria-hidden="true"></span><span data-en="04 — Archive">04 — Archyvas</span></p>
+    <div class="mt-10 md:flex md:items-end md:justify-between gap-10">
+      <h2 class="display-lg text-[clamp(2.3rem,5vw,4.3rem)]">
+        <span class="mask"><span data-en="More work">Daugiau darbų</span></span>
+      </h2>
+      <p class="rv mt-6 md:mt-0 text-ink-dim max-w-[40ch]" style="--d:.15s"
+         data-en="A few of our 200+ projects — click to view.">
+        Dalis iš 200+ projektų — spustelėkite.</p>
+    </div>
+
+  </div>
+
+  <!-- auto-sliding "wall of work": every slide clickable → project sheet -->
+  <div class="marquee mt-14 md:mt-16 rv" role="region" aria-label="Projektų galerija — slenka automatiškai, užveskite kad sustabdytumėte" data-en-aria="Project gallery — auto-scrolling, hover to pause">
+    <div class="marquee-track">
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/taurages-baseinas.jpg" data-title="Tauragės baseinas" data-title-en="Tauragė Swimming Pool"
+        data-cat="Architektūra" data-cat-en="Architecture"
+        data-desc="Buvusio karinio miestelio kultūros pastato rekonstrukcija į sporto kompleksą, tapusį miesto bendruomenės traukos centru: 25 m plaukimo baseinas, pramoginis ir vaikų baseinai, trys pirtys ir vandens atrakcijos."
+        data-desc-en="A former military-town culture building reconstructed into a sports complex that became the town's gathering place: a 25 m swimming pool, leisure and children's pools, three saunas and water attractions.">
+        <img src="assets/img/thumbs/taurages-baseinas.jpg" alt="Tauragės plaukimo baseino pastatas" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Architecture">Architektūra</span></span>
+          <span class="card-title display-md text-xl block" data-en="Tauragė Swimming Pool">Tauragės baseinas</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/neries-krantine.jpg" data-title="Neries krantinė, B atkarpa" data-title-en="Neris Embankment, Section B"
+        data-cat="Viešosios erdvės" data-cat-en="Public spaces"
+        data-desc="Krantinės atkarpos nuo Sluškų g. iki Šilo tilto darbo projektas: poilsio aikštelės, pėsčiųjų ir dviračių takai, išsaugotos medžių alėjos. P. Vileišio gatvėje įrengta pirmoji tikra dviračių gatvė Lietuvoje."
+        data-desc-en="Detailed design for the section from Sluškų St to Šilo Bridge: rest areas, walking and cycling paths, preserved tree alleys — and on P. Vileišio Street, the first true bicycle street in Lithuania.">
+        <img src="assets/img/thumbs/neries-krantine.jpg" alt="Neries krantinės viešoji erdvė Vilniuje" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Public spaces">Viešosios erdvės</span></span>
+          <span class="card-title display-md text-xl block" data-en="Neris Embankment, Section B">Neries krantinė, B atkarpa</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/policijos-komisariatas.jpg" data-title="Vilniaus m. policijos komisariatas" data-title-en="Vilnius City Police Commissariat"
+        data-cat="BIM projektai" data-cat-en="BIM projects"
+        data-desc="Daugiau kaip 9 750 m² administracinis pastatas Sietyno gatvėje, kuriame įsikurs penki sostinės policijos padaliniai. Projektas parengtas BIM metodika LOD 300–350 detalumu — nuo paties pastato iki lauko inžinerinių tinklų."
+        data-desc-en="An administrative building of more than 9,750 m² on Sietyno Street, housing five of the capital's police units. Engineered with BIM at LOD 300–350 — from the building itself to the outdoor utility networks.">
+        <img src="assets/img/thumbs/policijos-komisariatas.jpg" alt="Vilniaus miesto policijos komisariato pastatas" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="BIM projects">BIM projektai</span></span>
+          <span class="card-title display-md text-xl block" data-en="Vilnius City Police Commissariat">Vilniaus m. policijos komisariatas</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/panevezio-siaurine.jpg" data-title="Panevėžio Šiaurinė gatvė" data-title-en="Šiaurinė Street, Panevėžys"
+        data-cat="Susisiekimo komunikacijos" data-cat-en="Transport infrastructure"
+        data-desc="Pirmuoju etapu įrengiama gatvės dalis nuo Pramonės iki Amerikos gatvės su nauja trišale sankryža ir 6,50–7,00 m pločio asfalto važiuojamąja dalimi."
+        data-desc-en="Stage one delivers the street section from Pramonės Street to Amerikos Street, with a new three-way intersection and a 6.50–7.00 m wide asphalt carriageway.">
+        <img src="assets/img/thumbs/panevezio-siaurine.jpg" alt="Panevėžio Šiaurinės gatvės rekonstrukcija" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Transport infrastructure">Susisiekimo komunikacijos</span></span>
+          <span class="card-title display-md text-xl block" data-en="Šiaurinė Street, Panevėžys">Panevėžio Šiaurinė gatvė</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/kupiskio-vandenys.jpg" data-title="Kupiškio vandens gerinimo įrenginiai" data-title-en="Kupiškis Water Treatment Plant"
+        data-cat="Inžinerinė infrastruktūra" data-cat-en="Engineering infrastructure"
+        data-desc="Nauji vandens gerinimo įrenginiai su automatizuotu procesu: technologinis pastatas, filtrai ir technologiniai vamzdynai. Geležis ir manganas šalinami gamtinės kilmės medžiagomis — iki geriamojo vandens kokybės."
+        data-desc-en="A new water treatment plant with a fully automated process: a technological building, filters and process pipelines. Iron and manganese are removed using natural, ecological media — to drinking-water standards.">
+        <img src="assets/img/thumbs/kupiskio-vandenys.jpg" alt="Kupiškio vandens gerinimo įrenginiai" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Engineering infrastructure">Inžinerinė infrastruktūra</span></span>
+          <span class="card-title display-md text-xl block" data-en="Kupiškis Water Treatment Plant">Kupiškio vandens gerinimo įrenginiai</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/dainu-takas.jpg" data-title="Dainų takas ir prieigos" data-title-en="Dainų Path &amp; Approaches"
+        data-cat="Viešosios erdvės" data-cat-en="Public spaces"
+        data-desc="Kapitaliai atnaujintas takas ir jo prieigos Šiauliuose: fontanas „Saulės diskai“, neįgaliesiems pritaikyta žaidimų aikštelė, LED apšvietimas ir rekonstruoti požeminiai tinklai."
+        data-desc-en="A capital renewal of the path and its approaches in Šiauliai: the “Saulės diskai” fountain, an accessible playground, LED lighting and reconstructed underground utilities.">
+        <img src="assets/img/thumbs/dainu-takas.jpg" alt="Dainų tako viešoji erdvė" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Public spaces">Viešosios erdvės</span></span>
+          <span class="card-title display-md text-xl block" data-en="Dainų Path &amp; Approaches">Dainų takas ir prieigos</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/taurages-progimnazija.jpg" data-title="Tauragės M. Mažvydo progimnazija" data-title-en="Tauragė M. Mažvydas Progymnasium"
+        data-cat="Architektūra" data-cat-en="Architecture"
+        data-desc="Rekonstravimo projektas: pagerinti pastato energinio naudingumo rodikliai, pritaikyta žmonėms su negalia, modernizuotos mokymosi erdvės, atnaujintas stadionas, bėgimo takai ir sporto aikštelės."
+        data-desc-en="A reconstruction project: improved energy performance, full accessibility, modernised learning spaces, and a renewed stadium with running tracks and new sports grounds.">
+        <img src="assets/img/thumbs/taurages-progimnazija.jpg" alt="Tauragės M. Mažvydo progimnazijos pastatas" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Architecture">Architektūra</span></span>
+          <span class="card-title display-md text-xl block" data-en="Tauragė M. Mažvydas Progymnasium">Tauragės M. Mažvydo progimnazija</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/svencioniu-valykla.jpg" data-title="Švenčionių nuotekų valykla" data-title-en="Švenčionys Wastewater Plant"
+        data-cat="Inžinerinė infrastruktūra" data-cat-en="Engineering infrastructure"
+        data-desc="Modernizuota valykla atitinka griežčiausius aplinkosaugos reikalavimus: azoto išvalymas išaugo dvigubai, fosforo — vienuolika kartų. Projektinis našumas 1 080 m³ per parą, biologiniam valymui įrengti SBR bioreaktoriai."
+        data-desc-en="The modernised plant meets the strictest environmental requirements: nitrogen removal doubled, phosphorus removal grew elevenfold. Design capacity of 1,080 m³ per day, with SBR bioreactors for biological treatment.">
+        <img src="assets/img/thumbs/svencioniu-valykla.jpg" alt="Švenčionių nuotekų valyklos įrenginiai" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Engineering infrastructure">Inžinerinė infrastruktūra</span></span>
+          <span class="card-title display-md text-xl block" data-en="Švenčionys Wastewater Plant">Švenčionių nuotekų valykla</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/paplaujos-bulvaras.jpg" data-title="Paplaujos bulvaras" data-title-en="Paplauja Boulevard"
+        data-cat="Viešosios erdvės · BIM" data-cat-en="Public spaces · BIM"
+        data-desc="Manufaktūrų gatvės rekonstrukcija, paverčiant ją naujo Architektūros parko rajono centriniu bulvaru su dviračių ir pėsčiųjų takais. Projektas parengtas BIM aplinkoje."
+        data-desc-en="Reconstruction of Manufaktūrų Street into the central boulevard of the new Architecture Park district, with cycling and walking paths. Designed in a BIM environment.">
+        <img src="assets/img/thumbs/paplaujos-bulvaras.jpg" alt="Paplaujos bulvaro viešoji erdvė" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Public spaces">Viešosios erdvės</span></span>
+          <span class="card-title display-md text-xl block" data-en="Paplauja Boulevard">Paplaujos bulvaras</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/neries-kaire.jpg" data-title="Kairiosios Neries krantinės atnaujinimas" data-title-en="Left Neris Embankment Renewal"
+        data-cat="Viešosios erdvės" data-cat-en="Public spaces"
+        data-desc="Kairiosios krantinės atnaujinimas tarp Seimo ir Baltojo tilto: sutvarkyti dviračių ir pėsčiųjų takai, įrengtas apšvietimas, lietaus surinkimo sistemos ir autobusų stotelė."
+        data-desc-en="Renewal of the left embankment between the Seimas and the White Bridge: cycling and walking paths, new lighting, rainwater collection systems and a bus stop.">
+        <img src="assets/img/thumbs/neries-kaire.jpg" alt="Kairioji Neries krantinė Vilniuje" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Public spaces">Viešosios erdvės</span></span>
+          <span class="card-title display-md text-xl block" data-en="Left Neris Embankment Renewal">Kairiosios Neries krantinės atnaujinimas</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/telsiu-baseinas.jpg" data-title="Plaukimo baseinas Telšiuose" data-title-en="Telšiai Swimming Pool"
+        data-cat="Architektūra" data-cat-en="Architecture"
+        data-desc="Baseino Lygumų gatvėje atnaujinimo techninis ir darbo projektai: 25 m plaukimo baseinas, vaikų baseinas ir trys pirtys — sauna, turkiška bei infraraudonųjų spindulių."
+        data-desc-en="Technical and detailed design for the renewal of the pool on Lygumų Street: a 25 m swimming pool, a children's pool and three saunas — Finnish, Turkish and infrared.">
+        <img src="assets/img/thumbs/telsiu-baseinas.jpg" alt="Telšių plaukimo baseino pastatas" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Architecture">Architektūra</span></span>
+          <span class="card-title display-md text-xl block" data-en="Telšiai Swimming Pool">Plaukimo baseinas Telšiuose</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/paneriu-planas.jpg" data-title="Aukštųjų Panerių pramoninio rajono planas" data-title-en="Aukštieji Paneriai Industrial Plan"
+        data-cat="Teritorijų planavimas" data-cat-en="Territorial planning"
+        data-desc="Aukštųjų Panerių pramoninio rajono C zonos detaliojo plano korektūra Jočionių g. 55 sklype, sudariusi sąlygas A klasės sandėlių komplekso plėtrai."
+        data-desc-en="Correction of the detailed plan for zone C of the Aukštieji Paneriai industrial district at Jočionių St. 55, enabling the development of an A-class warehouse complex.">
+        <img src="assets/img/thumbs/paneriu-planas.jpg" alt="Aukštųjų Panerių pramoninio rajono teritorijos planas" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Territorial planning">Teritorijų planavimas</span></span>
+          <span class="card-title display-md text-xl block" data-en="Aukštieji Paneriai Industrial Plan">Aukštųjų Panerių pramoninio rajono planas</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/birstono-planas.jpg" data-title="Birštono kurorto bendrasis planas" data-title-en="Birštonas Resort Master Plan"
+        data-cat="Teritorijų planavimas" data-cat-en="Territorial planning"
+        data-desc="Kurorto bendrojo plano sprendinių keitimas: teritorija suskirstyta pagal žemės naudojimo interesus, kiekvienai zonai apibrėžiant dominuojančią veiklą ir vystymo kryptį."
+        data-desc-en="Amendments to the resort town's master plan: the territory zoned by land-use interests, with a dominant activity and a development direction defined for each zone.">
+        <img src="assets/img/thumbs/birstono-planas.jpg" alt="Birštono kurorto panorama" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Territorial planning">Teritorijų planavimas</span></span>
+          <span class="card-title display-md text-xl block" data-en="Birštonas Resort Master Plan">Birštono kurorto bendrasis planas</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 KLIENTAI ================= -->
+<section id="klientai" class="cv scroll-mt-20 py-24 md:py-32 bg-[#EAEFEC]">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="meta sec-label rv"><span class="dot mr-2" aria-hidden="true"></span><span data-en="05 — Clients">05 — Klientai</span></p>
+    <div class="mt-10 md:flex md:items-end md:justify-between gap-10">
+      <h2 class="display-lg text-[clamp(2.3rem,5vw,4.3rem)] max-w-[22ch]">
+        <span class="mask"><span data-en="They trust us">Mumis pasitiki</span></span>
+      </h2>
+      <p class="rv mt-6 md:mt-0 text-ink-dim max-w-[38ch]" style="--d:.2s"
+         data-en="Project after project.">
+        Projektas po projekto.</p>
+    </div>
+    <ul class="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 list-none">
+      <li class="client-tile rv"><img src="assets/img/clients/vilnius.png" alt="Vilniaus miesto savivaldybė" loading="lazy"></li>
+      <li class="client-tile rv" style="--d:.04s"><img src="assets/img/clients/vilniaus-vandenys.png" alt="Vilniaus vandenys" loading="lazy"></li>
+      <li class="client-tile rv" style="--d:.08s"><img src="assets/img/clients/keliu-direkcija.png" alt="Lietuvos automobilių kelių direkcija" loading="lazy"></li>
+      <li class="client-tile rv" style="--d:.12s"><img src="assets/img/clients/turto-bankas.png" alt="Turto bankas" loading="lazy"></li>
+      <li class="client-tile rv"><img src="assets/img/clients/kauno-tiltai.png" alt="Kauno tiltai" loading="lazy"></li>
+      <li class="client-tile rv" style="--d:.04s"><img src="assets/img/clients/eikos-statyba.png" alt="Eikos statyba" loading="lazy"></li>
+      <li class="client-tile rv" style="--d:.08s"><img src="assets/img/clients/sirin-development.png" alt="Sirin Development" loading="lazy"></li>
+      <li class="client-tile rv" style="--d:.12s"><img src="assets/img/clients/northway.png" alt="Northway" loading="lazy"></li>
+      <li class="client-tile rv"><img src="assets/img/clients/pozemines-linijos.png" alt="Požeminės linijos" loading="lazy"></li>
+      <li class="client-tile rv" style="--d:.04s"><img src="assets/img/clients/arginta.png" alt="Arginta" loading="lazy"></li>
+      <li class="client-tile rv" style="--d:.08s"><img src="assets/img/clients/telsiu-savivaldybe.png" alt="Telšių rajono savivaldybė" loading="lazy"></li>
+      <li class="client-tile rv" style="--d:.12s"><img src="assets/img/clients/taurage.png" alt="Tauragės rajono savivaldybė" loading="lazy"></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= STATEMENT BAND ================= -->
+<section class="band h-[70svh] min-h-[420px] flex items-center">
+  <div class="band-media"><img src="assets/img/wide/neris-wide.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+  <div class="band-tint" aria-hidden="true"></div>
+  <div class="band-shade" aria-hidden="true"></div>
+  <div class="relative max-w-[1400px] mx-auto px-6 md:px-10 w-full">
+    <p class="meta rv">Atamis · 2006—2026</p>
+    <p class="display-lg rv mt-6 text-[clamp(1.9rem,4.6vw,3.8rem)] max-w-[24ch]" style="--d:.12s"
+       data-en="From drawing to reality.">
+      Nuo brėžinio iki tikrovės.</p>
+  </div>
+</section>
+
+<!-- ================= 05 KONTAKTAI ================= -->
+<section id="kontaktai" class="cv scroll-mt-20 py-24 md:py-36">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="meta sec-label rv"><span class="dot mr-2" aria-hidden="true"></span><span data-en="06 — Contact">06 — Kontaktai</span></p>
+    <div class="mt-10 grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-8">
+        <h2 class="display-xl text-[clamp(2.8rem,7.2vw,6.2rem)]">
+          <span class="mask"><span data-en="Have a project?">Turite projektą?</span></span>
+        </h2>
+        <p class="rv mt-8 text-ink-dim max-w-[48ch]" style="--d:.2s"
+           data-en="We reply within one business day.">
+          Atsakysime per vieną darbo dieną.</p>
+        <div class="rv mt-10 flex flex-wrap gap-4" style="--d:.3s">
+          <a href="mailto:info@atamis.lt" class="btn btn-solid" data-en="Write to us">Parašykite mums</a>
+          <a href="tel:+37052728334" class="btn btn-ghost">+370 5 2728 334</a>
+        </div>
+      </div>
+      <address class="lg:col-span-4 not-italic rv self-end" style="--d:.35s">
+        <p class="meta" data-en="Studio">Studija</p>
+        <p class="mt-3 text-ink">Žirmūnų g. 139<br>LT-09120 Vilnius, Lietuva</p>
+        <p class="meta mt-8" data-en="E-mail">El. paštas</p>
+        <p class="mt-3"><a class="navlink" href="mailto:info@atamis.lt">info@atamis.lt</a></p>
+        <p class="meta mt-8" data-en="Follow us">Sekite mus</p>
+        <p class="mt-3"><a class="navlink" href="https://www.facebook.com/AtamisLT" target="_blank" rel="noopener"
+          aria-label="Atamis Facebook puslapis (atsidaro naujame lange)" data-en-aria="Atamis Facebook page (opens in a new window)">Facebook&nbsp;↗</a></p>
+      </address>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-ink-950 border-t border-[var(--hair)]">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 grid gap-10 md:grid-cols-12 items-start">
+    <div class="md:col-span-4">
+      <img src="assets/img/atamis-logo-white.png" alt="Atamis" class="h-[24px] w-auto">
+      <p class="meta mt-5 max-w-[34ch]" data-en="Engineering company · Vilnius · since 2006">Inžinerinė bendrovė · Vilnius · nuo 2006 m.</p>
+    </div>
+    <nav class="md:col-span-4 grid gap-2 text-[.95rem]" aria-label="Poraštės navigacija" data-en-aria="Footer navigation">
+      <a class="navlink w-fit" href="#studija" data-en="Studio">Studija</a>
+      <a class="navlink w-fit" href="#paslaugos" data-en="Services">Paslaugos</a>
+      <a class="navlink w-fit" href="#projektai" data-en="Projects">Projektai</a>
+      <a class="navlink w-fit" href="#klientai" data-en="Clients">Klientai</a>
+      <a class="navlink w-fit" href="#kontaktai" data-en="Contact">Kontaktai</a>
+    </nav>
+    <div class="md:col-span-4 meta leading-loose">
+      <p data-en="Territorial planning · Transport infrastructure · Engineering infrastructure · Architecture · Public spaces · BIM">
+        Teritorijų planavimas · Susisiekimo komunikacijos · Inžinerinė infrastruktūra · Architektūra · Viešosios erdvės · BIM</p>
+    </div>
+  </div>
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 pb-10 flex flex-wrap justify-between gap-4 meta">
+    <p>© 2026 UAB „Atamis“. <span data-en="All rights reserved.">Visos teisės saugomos.</span></p>
+    <p>Žirmūnų g. 139, Vilnius · <a class="navlink" href="tel:+37052728334">+370 5 2728 334</a> ·
+      <a class="navlink" href="https://www.facebook.com/AtamisLT" target="_blank" rel="noopener"
+        aria-label="Atamis Facebook puslapis (atsidaro naujame lange)" data-en-aria="Atamis Facebook page (opens in a new window)">Facebook&nbsp;↗</a></p>
+  </div>
+</footer>
+
+<!-- ================= LIGHTBOX ================= -->
+<dialog class="lightbox" id="lightbox" aria-label="Projekto informacija" data-en-aria="Project details">
+  <figure class="relative m-0">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Uždaryti" data-en-aria="Close">✕</button>
+    <img src="" alt="" id="lightbox-img">
+  </figure>
+  <div class="lightbox-sheet">
+    <p class="meta"><span class="dot mr-2" aria-hidden="true"></span><span id="lightbox-cat"></span></p>
+    <h3 class="display-md text-2xl mt-3" id="lightbox-title"></h3>
+    <p class="text-ink-dim mt-3 max-w-[70ch]" id="lightbox-desc"></p>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  const $ = (s, c=document) => c.querySelector(s);
+  const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- preloader → hero intro ---------- */
+  const pre = $('.preloader');
+  const hero = $('.hero');
+  let started = false;
+  const start = () => {
+    if (started) return; started = true;
+    pre.classList.add('done');
+    requestAnimationFrame(() => hero.classList.add('hero-in'));
+  };
+  if (reduced) start();
+  else {
+    addEventListener('load', () => setTimeout(start, 250));
+    setTimeout(start, 2200); // never trap the page behind the loader
+  }
+  /* ---------- hero video: reduced-motion gating + pause/play toggle (WCAG 2.2.2) ---------- */
+  const video = $('.hero video');
+  const vidBtn = $('.vid-toggle');
+  if (video) {
+    video.muted = true;
+    if (reduced) {
+      video.removeAttribute('autoplay');
+      video.preload = 'none';
+      video.pause();
+    } else {
+      video.play().catch(() => {});
+    }
+    const paintVidBtn = () => {
+      const en = document.documentElement.lang === 'en';
+      const paused = video.paused;
+      vidBtn.classList.toggle('paused', paused);
+      vidBtn.setAttribute('aria-label', paused
+        ? (en ? 'Play video' : 'Paleisti vaizdo įrašą')
+        : (en ? 'Pause video' : 'Pristabdyti vaizdo įrašą'));
+    };
+    let userPaused = false;
+    vidBtn.addEventListener('click', () => {
+      userPaused = !video.paused; // remember an explicit pause so we don't auto-resume it
+      if (video.paused) video.play().catch(() => {}); else video.pause();
+    });
+    video.addEventListener('play', paintVidBtn);
+    video.addEventListener('pause', paintVidBtn);
+    document.addEventListener('langchange', paintVidBtn);
+    paintVidBtn();
+    // stop decoding the loop while the hero is scrolled out of view
+    new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) video.pause();
+      else if (!reduced && !userPaused) video.play().catch(() => {});
+    }).observe($('.hero'));
+  }
+
+  /* ---------- i18n (LT default, EN via data-en) ---------- */
+  const LANG_KEY = 'atamis-lang';
+  $$('[data-en]').forEach(el => { el.dataset.lt = el.innerHTML; });
+  $$('[data-en-aria]').forEach(el => { el.dataset.ltAria = el.getAttribute('aria-label'); });
+  $$('[data-en-alt]').forEach(el => { el.dataset.ltAlt = el.getAttribute('alt'); });
+  const setLang = (lang) => {
+    document.documentElement.lang = lang;
+    $$('[data-en]').forEach(el => { el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.lt; });
+    $$('[data-en-aria]').forEach(el => {
+      el.setAttribute('aria-label', lang === 'en' ? el.dataset.enAria : el.dataset.ltAria);
+    });
+    $$('[data-en-alt]').forEach(el => {
+      el.setAttribute('alt', lang === 'en' ? el.dataset.enAlt : el.dataset.ltAlt);
+    });
+    $$('.lang-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    document.title = lang === 'en'
+      ? 'Atamis — reshaping Lithuania'
+      : 'Atamis — keičiame Lietuvą';
+    try { localStorage.setItem(LANG_KEY, lang); } catch {}
+    document.dispatchEvent(new Event('langchange'));
+  };
+  $$('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  let saved = null;
+  try { saved = localStorage.getItem(LANG_KEY); } catch {}
+  if (saved === 'en' || (!saved && !/^lt/i.test(navigator.language))) setLang('en');
+
+  /* ---------- mobile menu (inert background + focus management) ---------- */
+  const burger = $('.burger');
+  const mainEl = $('main'), footEl = $('footer');
+  const setMenu = (open) => {
+    document.documentElement.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    mainEl.inert = open;
+    footEl.inert = open;
+    if (open) $('.mobile-menu a')?.focus({ preventScroll: true });
+  };
+  const closeMenu = () => {
+    if (!document.documentElement.classList.contains('menu-open')) return;
+    setMenu(false);
+    burger.focus({ preventScroll: true });
+  };
+  burger.addEventListener('click', () =>
+    setMenu(!document.documentElement.classList.contains('menu-open')));
+  $$('.mobile-menu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  // leaving the mobile breakpoint hides the menu — release the scroll lock too
+  const mqDesktop = matchMedia('(min-width: 768px)');
+  mqDesktop.addEventListener('change', e => { if (e.matches) closeMenu(); });
+
+  /* ---------- header state ---------- */
+  const header = $('.site-header');
+
+  /* ---------- scroll reveals ---------- */
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+      if (e.target.matches('.rv') && e.target.querySelector('[data-count]')) countUp(e.target);
+    }
+  }, { threshold: 0.18 });
+  $$('.rv, .mask').forEach(el => io.observe(el));
+
+  /* deck captions: staggered entrance when a panel takes the stage */
+  const deckIO = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting) {
+      e.target.classList.add('in');
+      deckIO.unobserve(e.target);
+    }
+  }, { threshold: 0.35 });
+  $$('.deck-panel').forEach(p => deckIO.observe(p));
+
+  /* ---------- project marquee: duplicate the set once for a seamless -50% loop ---------- */
+  const track = $('.marquee-track');
+  if (track) {
+    const originals = [...track.children];
+    track.style.setProperty('--marq-dur', Math.max(40, originals.length * 4.6) + 's');
+    originals.forEach(node => {
+      const clone = node.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('tabindex', '-1');
+      track.appendChild(clone); // second copy — translateX(-50%) lands it seamlessly
+    });
+  }
+
+  /* ---------- stat count-up ---------- */
+  const countUp = (scope) => {
+    $$('[data-count]', scope).forEach(el => {
+      const target = +el.dataset.count;
+      if (reduced) { el.textContent = target; return; }
+      const t0 = performance.now(), dur = 1400;
+      const tick = (t) => {
+        const p = Math.min((t - t0) / dur, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 4)));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  };
+
+  /* ---------- scroll-linked motion: hero parallax + deck + header palette ----------
+     All DOM reads happen first, then all writes — interleaving them forces a
+     layout recalculation per panel per frame, which is what makes scrolling stutter. */
+  const heroMedia = $('.hero-media');
+  const panels = $$('.deck-panel');
+  const bandEl = $('.band');
+  const bandMedia = $('.band-media');
+  // dark (photographic) surfaces — while the transparent header floats over one
+  // of these, it keeps the night palette; otherwise it flips to ink-on-paper
+  const darkSurfaces = [$('.hero'), ...panels, bandEl, $('footer')].filter(Boolean);
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      const y = scrollY;
+      const vh = innerHeight;
+      /* --- reads --- */
+      const headerMid = 44;
+      const overDark = darkSurfaces.some(s => {
+        const r = s.getBoundingClientRect();
+        return r.top <= headerMid && r.bottom >= headerMid;
+      });
+      const bandRect = bandEl && bandEl.getBoundingClientRect();
+      /* --- writes --- */
+      header.classList.toggle('over-light', !overDark);
+      if (reduced) return;
+      if (y < vh * 1.2) heroMedia.style.transform = `translateY(${y * 0.32}px)`;
+      if (bandRect && bandRect.bottom > 0 && bandRect.top < vh) {
+        bandMedia.style.transform = `translateY(${(bandRect.top + bandRect.height / 2 - vh / 2) * -0.12}px)`;
+      }
+    });
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- lightbox (project sheet) ---------- */
+  const box = $('#lightbox'), boxImg = $('#lightbox-img');
+  const boxCat = $('#lightbox-cat'), boxTitle = $('#lightbox-title'), boxDesc = $('#lightbox-desc');
+  $$('.card').forEach(card => card.addEventListener('click', () => {
+    const img = card.querySelector('img');
+    const en = document.documentElement.lang === 'en';
+    const title = en ? (card.dataset.titleEn || card.dataset.title) : card.dataset.title;
+    boxImg.src = card.dataset.full || img.src; // slides use light thumbs; open the full image
+    boxImg.alt = title;
+    boxTitle.textContent = title;
+    boxCat.textContent = en ? (card.dataset.catEn || card.dataset.cat) : (card.dataset.cat || '');
+    boxDesc.textContent = en ? (card.dataset.descEn || card.dataset.desc) : (card.dataset.desc || '');
+    box.showModal();
+  }));
+  $('#lightbox-close').addEventListener('click', () => box.close());
+  box.addEventListener('click', e => { if (e.target === box) box.close(); });
+})();
+</script>
+</body>
+</html>

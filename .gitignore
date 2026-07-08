@@ -1,0 +1,12 @@
+# Secrets — .mcp.json holds the 21st.dev API key in plain text
+.mcp.json
+
+# OS
+.DS_Store
+
+# Dependencies / build
+node_modules/
+
+# Working references — not part of the website deliverable
+acor-moe-reference/
+Screenshot*.png
