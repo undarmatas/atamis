@@ -330,30 +330,60 @@
     background:linear-gradient(to top, rgba(14,13,12,.45), transparent 55%)}
   .frame .frame-tint{position:absolute; inset:0; background:linear-gradient(140deg, rgba(178,45,47,.07), rgba(38,80,92,.13))}
 
-  /* ---------- services accordion ---------- */
+  /* ---------- services (premium disciplines) ---------- */
   .svc{border-top:1px solid var(--hair)}
   .svc:last-of-type{border-bottom:1px solid var(--hair)}
-  .svc summary{display:grid; grid-template-columns:2.75rem 1fr 1.5rem; align-items:center; gap:1rem;
+  .svc summary{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:1.1rem;
     padding:1.5rem 0; cursor:pointer; list-style:none}
   .svc summary::-webkit-details-marker{display:none}
-  .svc summary .meta{color:var(--accent2)}
-  .svc summary h3{transition:transform .3s var(--ease-out), color .2s linear}
-  .svc summary:hover h3{transform:translateX(8px)}
-  .svc summary:active h3{transform:translateX(4px)}
-  .svc-icon{position:relative; width:14px; height:14px; justify-self:end}
-  .svc-icon::before,.svc-icon::after{content:""; position:absolute; left:0; top:6px; width:14px; height:2px;
-    background:var(--accent2); border-radius:2px; transition:transform .3s var(--ease-out)}
+  @media (min-width:768px){.svc summary{padding:2.1rem 0; gap:2rem}}
+  .svc-idx{font-family:"IBM Plex Mono",monospace; font-size:.78rem; letter-spacing:.1em; color:var(--accent2);
+    font-variant-numeric:tabular-nums; align-self:start; padding-top:.5em}
+  .svc-name{font-family:Archivo,sans-serif; font-weight:600; font-stretch:110%; letter-spacing:-.02em; line-height:1.02;
+    font-size:clamp(1.55rem,4.4vw,2.9rem); color:var(--fg);
+    transition:transform .35s var(--ease-out), color .25s linear}
+  .svc summary:hover .svc-name{transform:translateX(10px); color:var(--red)}
+  .svc summary:active .svc-name{transform:translateX(5px)}
+  .svc[open] .svc-name{color:var(--red)}
+  .svc-icon{position:relative; width:36px; height:36px; border:1px solid var(--hair); border-radius:999px; justify-self:end;
+    transition:border-color .25s linear, background-color .25s linear}
+  .svc summary:hover .svc-icon{border-color:var(--red); background:var(--ghost-hover)}
+  .svc-icon::before,.svc-icon::after{content:""; position:absolute; left:50%; top:50%; width:12px; height:2px;
+    margin:-1px 0 0 -6px; background:var(--accent2); border-radius:2px;
+    transition:transform .35s var(--ease-out), background-color .25s linear}
   .svc-icon::after{transform:rotate(90deg)}
+  .svc[open] .svc-icon{border-color:var(--red)}
+  .svc[open] .svc-icon::before,.svc[open] .svc-icon::after{background:var(--red)}
   .svc[open] .svc-icon::after{transform:rotate(0deg)}
-  .svc[open] summary h3{color:var(--red)}
-  .svc-body{padding:0 0 2.25rem; margin-left:0}
-  .js .svc[open] .svc-body{animation:svcIn .5s var(--ease-out)}
-  @keyframes svcIn{from{opacity:0; transform:translateY(-8px)}to{opacity:1; transform:none}}
-  .svc-list-item{display:flex; gap:.75rem; align-items:baseline}
+  .svc-body{display:grid; grid-template-columns:1fr; gap:1.5rem; padding:.4rem 0 2.6rem}
   @media (min-width:768px){
-    .svc summary{grid-template-columns:3.5rem 1fr 2rem}
-    .svc-body{margin-left:4.5rem}
+    .svc-body{grid-template-columns:18rem 1fr; gap:2.6rem; align-items:start; padding:.6rem 0 3rem 3.4rem}
   }
+  .svc-photo{position:relative; overflow:hidden; border-radius:8px; aspect-ratio:16/10; border:1px solid var(--hair);
+    box-shadow:0 1px 2px rgba(14,13,12,.16), 0 12px 30px -12px rgba(14,13,12,.4)}
+  .svc-photo img{width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.2s var(--ease-out)}
+  .svc[open] .svc-photo img{transform:scale(1.04)}
+  .svc-photo::after{content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(150deg, rgba(178,45,47,.05), rgba(46,95,108,.14))}
+  .svc-lead{font-size:1.1rem; line-height:1.55; color:var(--fg); max-width:52ch}
+  .svc-caps{margin-top:1.5rem; display:grid; gap:0}
+  .svc-cap{display:grid; grid-template-columns:1.9rem 1fr; align-items:baseline;
+    padding:.72rem 0; border-top:1px solid var(--hair); color:var(--muted)}
+  .svc-cap:first-child{border-top:none}
+  .svc-cap-idx{font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--accent2);
+    font-variant-numeric:tabular-nums; letter-spacing:.08em}
+  .js .svc[open] .svc-body{animation:svcIn .55s var(--ease-out)}
+  @keyframes svcIn{from{opacity:0; transform:translateY(-10px)}to{opacity:1; transform:none}}
+
+  /* ---------- footer brand wordmark ---------- */
+  .brand-word{display:inline-block; font-family:Archivo,sans-serif; font-weight:700; font-stretch:112%;
+    letter-spacing:-.045em; line-height:.82; color:var(--bone);
+    font-size:clamp(3.4rem,17vw,13rem); transition:opacity .3s linear, transform .3s var(--ease-out)}
+  .brand-word:hover{opacity:.9}
+  .brand-word:active{transform:scale(.99)}
+  .brand-word-i{position:relative}
+  .brand-word-i::after{content:""; position:absolute; left:50%; transform:translateX(-50%);
+    top:.03em; width:.15em; height:.15em; border-radius:50%; background:var(--red-bright)}
 
   /* ---------- lightbox ---------- */
   dialog.lightbox{background:transparent; border:none; padding:0; max-width:min(92vw,1100px); width:100%;
@@ -415,8 +445,8 @@
   <div class="header-bar max-w-[1400px] mx-auto flex items-center justify-between px-5 md:px-7 h-[60px]">
     <span class="glass-sheen" aria-hidden="true"></span>
     <a href="#virsus" class="logo-link shrink-0" aria-label="Atamis — į pradžią" data-en-aria="Atamis — back to top">
-      <img src="assets/img/atamis-logo-white.png" alt="Atamis" class="logo-light h-[26px] w-auto">
-      <img src="assets/img/atamis-logo.png" alt="" aria-hidden="true" class="logo-dark h-[26px] w-auto">
+      <img src="assets/img/atamis-logo-white.png" alt="Atamis" class="logo-light h-[30px] w-auto">
+      <img src="assets/img/atamis-logo.png" alt="" aria-hidden="true" class="logo-dark h-[30px] w-auto">
     </a>
     <nav class="hidden md:flex items-center gap-9 text-[.92rem]" aria-label="Pagrindinė navigacija" data-en-aria="Primary navigation">
       <a class="navlink" href="#studija" data-en="Studio">Studija</a>
@@ -550,108 +580,111 @@
     <div class="mt-14">
       <details class="svc rv" open>
         <summary>
-          <span class="meta">01</span>
-          <h3 class="display-md text-[clamp(1.3rem,2.6vw,1.9rem)]" data-en="Architecture">Architektūra</h3>
+          <span class="svc-idx">01</span>
+          <h3 class="svc-name" data-en="Architecture">Architektūra</h3>
           <span class="svc-icon" aria-hidden="true"></span>
         </summary>
-        <div class="svc-body grid md:grid-cols-2 gap-8">
-          <p class="text-ink-dim max-w-[58ch]"
-             data-en="Aesthetics and a harmonious relationship with the surroundings — inside and out. The team has deep experience designing public, commercial and residential buildings and creating urban public spaces. What we design is aesthetic, rational, ergonomic and energy-efficient.">
-            Estetika ir harmoningas santykis su aplinka — tiek viduje, tiek išorėje. Komanda yra
-            sukaupusi didelę patirtį negyvenamųjų, visuomeninių ir gyvenamųjų pastatų projektavime
-            bei urbanistinių, visuomeninių erdvių kūrime. Kuriamos erdvės pasižymi estetika,
-            racionalumu, ergonomiškumu ir energetiniu efektyvumu.</p>
-          <ul class="grid gap-3 content-start">
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Design of public, commercial and residential buildings">Visuomeninių, komercinių ir gyvenamųjų pastatų projektavimas</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Public spaces, parks, squares and sports facilities">Viešosios erdvės, parkai, skverai ir sporto statiniai</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Interior design">Interjero projektavimas</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Professional consulting">Profesionalios konsultacijos</span></li>
-          </ul>
+        <div class="svc-body">
+          <div class="svc-photo">
+            <img src="assets/img/thumbs/kulturos-centras.jpg" alt="Kultūros centro pastatas — architektūros pavyzdys" loading="lazy" decoding="async">
+          </div>
+          <div class="svc-text">
+            <p class="svc-lead" data-en="Aesthetic, rational and energy-efficient buildings and public spaces — in harmony with their surroundings.">Estetiški, racionalūs ir energiškai efektyvūs pastatai bei viešosios erdvės — darnoje su aplinka.</p>
+            <ul class="svc-caps">
+              <li class="svc-cap"><span class="svc-cap-idx">01</span><span data-en="Public, commercial and residential buildings">Visuomeninių, komercinių ir gyvenamųjų pastatų projektavimas</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">02</span><span data-en="Public spaces, parks, squares and sports facilities">Viešosios erdvės, parkai, skverai ir sporto statiniai</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">03</span><span data-en="Interior design">Interjero projektavimas</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">04</span><span data-en="Professional consulting">Profesionalios konsultacijos</span></li>
+            </ul>
+          </div>
         </div>
       </details>
 
       <details class="svc rv" style="--d:.05s">
         <summary>
-          <span class="meta">02</span>
-          <h3 class="display-md text-[clamp(1.3rem,2.6vw,1.9rem)]" data-en="Engineering infrastructure">Inžinerinė infrastruktūra</h3>
+          <span class="svc-idx">02</span>
+          <h3 class="svc-name" data-en="Engineering infrastructure">Inžinerinė infrastruktūra</h3>
           <span class="svc-icon" aria-hidden="true"></span>
         </summary>
-        <div class="svc-body grid md:grid-cols-2 gap-8">
-          <p class="text-ink-dim max-w-[58ch]"
-             data-en="Design of water supply, wastewater, electricity, telecommunications and other utility networks, as well as hydro-engineering structures — well fields, water treatment facilities, dams and wastewater treatment plants. We also provide design supervision services.">
-            Vandentiekio, nuotekų šalinimo, elektros, ryšių ir kitų inžinerinių tinklų bei
-            hidrotechninių statinių — vandenviečių, vandenruošos statinių, užtvankų ir nuotekų
-            valyklų — projektavimas. Atliekame ir šių statinių projekto vykdymo priežiūrą.</p>
-          <ul class="grid gap-3 content-start">
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Water supply and wastewater networks (domestic, storm, drainage)">Vandentiekio ir nuotekų tinklai (buitinių, lietaus, drenažo)</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Electricity and telecommunications networks">Elektros ir ryšių tinklai</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Hydro-engineering structures: well fields, dams, treatment plants">Hidrotechniniai statiniai: vandenvietės, užtvankos, valyklos</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Design supervision, feasibility studies and consulting">Projekto vykdymo priežiūra, galimybių studijos, konsultacijos</span></li>
-          </ul>
+        <div class="svc-body">
+          <div class="svc-photo">
+            <img src="assets/img/thumbs/svencioniu-valykla.jpg" alt="Nuotekų valykla — inžinerinės infrastruktūros pavyzdys" loading="lazy" decoding="async">
+          </div>
+          <div class="svc-text">
+            <p class="svc-lead" data-en="Utility networks and hydro-engineering structures — from water supply to wastewater treatment plants.">Inžineriniai tinklai ir hidrotechniniai statiniai — nuo vandentiekio iki nuotekų valyklų.</p>
+            <ul class="svc-caps">
+              <li class="svc-cap"><span class="svc-cap-idx">01</span><span data-en="Water supply and wastewater networks (domestic, storm, drainage)">Vandentiekio ir nuotekų tinklai (buitinių, lietaus, drenažo)</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">02</span><span data-en="Electricity and telecommunications networks">Elektros ir ryšių tinklai</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">03</span><span data-en="Hydro-engineering structures: well fields, dams, treatment plants">Hidrotechniniai statiniai: vandenvietės, užtvankos, valyklos</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">04</span><span data-en="Design supervision, feasibility studies and consulting">Projekto vykdymo priežiūra, galimybių studijos, konsultacijos</span></li>
+            </ul>
+          </div>
         </div>
       </details>
 
       <details class="svc rv" style="--d:.1s">
         <summary>
-          <span class="meta">03</span>
-          <h3 class="display-md text-[clamp(1.3rem,2.6vw,1.9rem)]" data-en="Transport infrastructure">Susisiekimo komunikacijos</h3>
+          <span class="svc-idx">03</span>
+          <h3 class="svc-name" data-en="Transport infrastructure">Susisiekimo komunikacijos</h3>
           <span class="svc-icon" aria-hidden="true"></span>
         </summary>
-        <div class="svc-body grid md:grid-cols-2 gap-8">
-          <p class="text-ink-dim max-w-[58ch]"
-             data-en="Safe, modern and durable transport infrastructure starts with a good design. The department is staffed by qualified road, railway and urban engineering specialists, and the key criteria are traffic safety, capacity, convenience and durability.">
-            Saugios, šiuolaikiškos ir ilgaamžės susisiekimo komunikacijos prasideda nuo gero projekto.
-            Skyriuje dirba kvalifikuoti kelių, geležinkelių ir miestų inžinerijos specialistai, o
-            pagrindiniai vertinimo kriterijai — eismo saugumas, pralaidumas, patogumas ir
-            ilgaamžiškumas.</p>
-          <ul class="grid gap-3 content-start">
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Street and road designs of all categories">Visų kategorijų gatvių ir kelių projektai</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Traffic studies and modelling">Transporto eismo tyrimai ir modeliavimas</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Railway infrastructure projects">Geležinkelių infrastruktūros projektai</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Cycling and pedestrian infrastructure">Dviračių ir pėsčiųjų infrastruktūra</span></li>
-          </ul>
+        <div class="svc-body">
+          <div class="svc-photo">
+            <img src="assets/img/thumbs/panevezio-siaurine.jpg" alt="Rekonstruota gatvė — susisiekimo komunikacijų pavyzdys" loading="lazy" decoding="async">
+          </div>
+          <div class="svc-text">
+            <p class="svc-lead" data-en="Safe, modern and durable streets, roads and railways.">Saugios, šiuolaikiškos ir ilgaamžės gatvės, keliai bei geležinkeliai.</p>
+            <ul class="svc-caps">
+              <li class="svc-cap"><span class="svc-cap-idx">01</span><span data-en="Street and road designs of all categories">Visų kategorijų gatvių ir kelių projektai</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">02</span><span data-en="Traffic studies and modelling">Transporto eismo tyrimai ir modeliavimas</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">03</span><span data-en="Railway infrastructure projects">Geležinkelių infrastruktūros projektai</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">04</span><span data-en="Cycling and pedestrian infrastructure">Dviračių ir pėsčiųjų infrastruktūra</span></li>
+            </ul>
+          </div>
         </div>
       </details>
 
       <details class="svc rv" style="--d:.15s">
         <summary>
-          <span class="meta">04</span>
-          <h3 class="display-md text-[clamp(1.3rem,2.6vw,1.9rem)]" data-en="Territorial planning">Teritorijų planavimas</h3>
+          <span class="svc-idx">04</span>
+          <h3 class="svc-name" data-en="Territorial planning">Teritorijų planavimas</h3>
           <span class="svc-icon" aria-hidden="true"></span>
         </summary>
-        <div class="svc-body grid md:grid-cols-2 gap-8">
-          <p class="text-ink-dim max-w-[58ch]"
-             data-en="Territorial planning shapes sustainable development and rational urbanisation, reconciling the natural and the built environment. It is the first stage of every construction project — the one that determines the success of everything that follows.">
-            Teritorijų planavimas formuoja darnią teritorijų plėtrą ir racionalią urbanizaciją,
-            suderina gamtinę ir antropogeninę aplinką. Tai pradinė kiekvieno statybos projekto
-            dalis, lemianti tolimesnių projektavimo stadijų sėkmę.</p>
-          <ul class="grid gap-3 content-start">
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Master plans and detailed plans">Bendrieji ir detalieji planai</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Special plans: protected areas, cultural heritage, infrastructure development">Specialieji planai: saugomų teritorijų, kultūros paveldo, infrastruktūros vystymo</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Strategic environmental assessment (SEA) documents">Strateginio pasekmių aplinkai vertinimo (SPAV) dokumentai</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Planning schemes, feasibility studies, monitoring and digitisation">Planavimo schemos, galimybių studijos, stebėsena ir skaitmenizavimas</span></li>
-          </ul>
+        <div class="svc-body">
+          <div class="svc-photo">
+            <img src="assets/img/thumbs/birstono-planas.jpg" alt="Teritorijos planas" loading="lazy" decoding="async">
+          </div>
+          <div class="svc-text">
+            <p class="svc-lead" data-en="Sustainable development and rational urbanisation — the first stage of every project.">Darni teritorijų plėtra ir racionali urbanizacija — pirmoji kiekvieno projekto stadija.</p>
+            <ul class="svc-caps">
+              <li class="svc-cap"><span class="svc-cap-idx">01</span><span data-en="Master plans and detailed plans">Bendrieji ir detalieji planai</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">02</span><span data-en="Special plans: protected areas, cultural heritage, infrastructure">Specialieji planai: saugomų teritorijų, kultūros paveldo, infrastruktūros</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">03</span><span data-en="Strategic environmental assessment (SEA) documents">Strateginio pasekmių aplinkai vertinimo (SPAV) dokumentai</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">04</span><span data-en="Planning schemes, feasibility studies and digitisation">Planavimo schemos, galimybių studijos, skaitmenizavimas</span></li>
+            </ul>
+          </div>
         </div>
       </details>
 
       <details class="svc rv" style="--d:.2s">
         <summary>
-          <span class="meta">05</span>
-          <h3 class="display-md text-[clamp(1.3rem,2.6vw,1.9rem)]" data-en="BIM projects">BIM projektai</h3>
+          <span class="svc-idx">05</span>
+          <h3 class="svc-name" data-en="BIM projects">BIM projektai</h3>
           <span class="svc-icon" aria-hidden="true"></span>
         </summary>
-        <div class="svc-body grid md:grid-cols-2 gap-8">
-          <p class="text-ink-dim max-w-[58ch]"
-             data-en="BIM — Building Information Modelling — uses analysis and 3D visualisation to show how a building will look and perform before it is completed. It lets us work more precisely and efficiently, and helps avoid losses.">
-            BIM — statinio informacinis modeliavimas — analizės ir trimatės vizualizacijos
-            priemonėmis leidžia matyti, kaip statinys atrodys ir veiks dar prieš jį užbaigiant.
-            Tai leidžia dirbti tiksliau, efektyviau ir padeda išvengti nuostolių.</p>
-          <ul class="grid gap-3 content-start">
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Building and interior design in a BIM environment">Pastatų ir interjero projektavimas BIM aplinkoje</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Utility network design">Inžinerinių tinklų projektavimas</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Transport infrastructure design">Susisiekimo komunikacijų projektavimas</span></li>
-            <li class="svc-list-item"><span class="dot shrink-0" aria-hidden="true"></span><span data-en="Reconstruction projects">Rekonstrukcijų projektai</span></li>
-          </ul>
+        <div class="svc-body">
+          <div class="svc-photo">
+            <img src="assets/img/thumbs/bio-city.jpg" alt="BIO CITY II — BIM projektas" loading="lazy" decoding="async">
+          </div>
+          <div class="svc-text">
+            <p class="svc-lead" data-en="3D information modelling — we see how a structure will perform before it is built.">Trimatis informacinis modeliavimas — matome, kaip statinys veiks, dar prieš jį pastatant.</p>
+            <ul class="svc-caps">
+              <li class="svc-cap"><span class="svc-cap-idx">01</span><span data-en="Building and interior design in a BIM environment">Pastatų ir interjero projektavimas BIM aplinkoje</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">02</span><span data-en="Utility network design">Inžinerinių tinklų projektavimas</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">03</span><span data-en="Transport infrastructure design">Susisiekimo komunikacijų projektavimas</span></li>
+              <li class="svc-cap"><span class="svc-cap-idx">04</span><span data-en="Reconstruction projects">Rekonstrukcijų projektai</span></li>
+            </ul>
+          </div>
         </div>
       </details>
     </div>
@@ -1059,10 +1092,12 @@
 
 <!-- ================= FOOTER ================= -->
 <footer class="bg-ink-950 border-t border-[var(--hair)]">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-14 grid gap-10 md:grid-cols-12 items-start">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-6">
+    <a href="#virsus" class="brand-word" aria-label="Atamis — į pradžią" data-en-aria="Atamis — back to top">atam<span class="brand-word-i">ı</span>s</a>
+  </div>
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 pt-10 pb-14 grid gap-10 md:grid-cols-12 items-start border-t border-[var(--hair)]">
     <div class="md:col-span-4">
-      <img src="assets/img/atamis-logo-white.png" alt="Atamis" class="h-[24px] w-auto">
-      <p class="meta mt-5 max-w-[34ch]" data-en="Engineering company · Vilnius · since 2006">Inžinerinė bendrovė · Vilnius · nuo 2006 m.</p>
+      <p class="meta max-w-[34ch]" data-en="Engineering company · Vilnius · since 2006">Inžinerinė bendrovė · Vilnius · nuo 2006 m.</p>
     </div>
     <nav class="md:col-span-4 grid gap-2 text-[.95rem]" aria-label="Poraštės navigacija" data-en-aria="Footer navigation">
       <a class="navlink w-fit" href="#studija" data-en="Studio">Studija</a>
@@ -1236,6 +1271,12 @@
       track.appendChild(clone); // second copy — translateX(-50%) lands it seamlessly
     });
   }
+
+  /* ---------- services: keep one discipline open at a time ---------- */
+  const svcItems = $$('.svc');
+  svcItems.forEach(d => d.addEventListener('toggle', () => {
+    if (d.open) svcItems.forEach(o => { if (o !== d && o.open) o.open = false; });
+  }));
 
   /* ---------- stat count-up ---------- */
   const countUp = (scope) => {
