@@ -956,6 +956,60 @@
           <span class="card-title display-md text-xl block" data-en="Birštonas Resort Master Plan">Birštono kurorto bendrasis planas</span>
         </span>
       </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/bio-city.jpg" data-title="BIO CITY II" data-title-en="BIO CITY II"
+        data-cat="Architektūra" data-cat-en="Architecture">
+        <img src="assets/img/thumbs/bio-city.jpg" alt="BIO CITY II biotechnologijų komplekso pastatas Vilniuje" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Architecture">Architektūra</span></span>
+          <span class="card-title display-md text-xl block" data-en="BIO CITY II">BIO CITY II</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/joniskelio-parkas.jpg" data-title="Joniškėlio miesto parkas" data-title-en="Joniškėlis Town Park"
+        data-cat="Viešosios erdvės" data-cat-en="Public spaces">
+        <img src="assets/img/thumbs/joniskelio-parkas.jpg" alt="Joniškėlio miesto parko medinė estrada" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Public spaces">Viešosios erdvės</span></span>
+          <span class="card-title display-md text-xl block" data-en="Joniškėlis Town Park">Joniškėlio miesto parkas</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/vydunelio-darzelis.jpg" data-title="Vaikų darželis „Vydūnėlis“" data-title-en="Vydūnėlis Kindergarten"
+        data-cat="Architektūra" data-cat-en="Architecture">
+        <img src="assets/img/thumbs/vydunelio-darzelis.jpg" alt="Vaikų darželio „Vydūnėlis“ pastatas Pilaitėje" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Architecture">Architektūra</span></span>
+          <span class="card-title display-md text-xl block" data-en="Vydūnėlis Kindergarten">Vaikų darželis „Vydūnėlis“</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/vadovybes-departamentas.jpg" data-title="Vadovybės apsaugos departamentas" data-title-en="Protective Security Department"
+        data-cat="BIM projektai" data-cat-en="BIM projects">
+        <img src="assets/img/thumbs/vadovybes-departamentas.jpg" alt="Vadovybės apsaugos departamento pastatas Vilniuje" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="BIM projects">BIM projektai</span></span>
+          <span class="card-title display-md text-xl block" data-en="Protective Security Department">Vadovybės apsaugos departamentas</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/kulturos-centras.jpg" data-title="Kultūros centras ir biblioteka" data-title-en="Culture Centre and Library"
+        data-cat="Architektūra" data-cat-en="Architecture">
+        <img src="assets/img/thumbs/kulturos-centras.jpg" alt="Kultūros centro ir bibliotekos pastatas" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Architecture">Architektūra</span></span>
+          <span class="card-title display-md text-xl block" data-en="Culture Centre and Library">Kultūros centras ir biblioteka</span>
+        </span>
+      </button>
+      <button class="card slide aspect-[4/3]" data-full="assets/img/projects/silo-mokykla.jpg" data-title="Vilniaus Šilo specialioji mokykla" data-title-en="Vilnius Šilas Special School"
+        data-cat="Architektūra" data-cat-en="Architecture">
+        <img src="assets/img/thumbs/silo-mokykla.jpg" alt="Vilniaus Šilo specialiosios mokyklos pastatas" loading="lazy" decoding="async">
+        <div class="card-tint" aria-hidden="true"></div>
+        <span class="card-body">
+          <span class="meta mb-2 block"><span class="dot mr-2" aria-hidden="true"></span><span data-en="Architecture">Architektūra</span></span>
+          <span class="card-title display-md text-xl block" data-en="Vilnius Šilas Special School">Vilniaus Šilo specialioji mokykla</span>
+        </span>
+      </button>
     </div>
   </div>
 </section>
@@ -1275,7 +1329,9 @@
     boxImg.alt = title;
     boxTitle.textContent = title;
     boxCat.textContent = en ? (card.dataset.catEn || card.dataset.cat) : (card.dataset.cat || '');
-    boxDesc.textContent = en ? (card.dataset.descEn || card.dataset.desc) : (card.dataset.desc || '');
+    const desc = (en ? (card.dataset.descEn || card.dataset.desc) : card.dataset.desc) || '';
+    boxDesc.textContent = desc;
+    boxDesc.style.display = desc ? '' : 'none'; // some projects have no description yet
     box.showModal();
   }));
   $('#lightbox-close').addEventListener('click', () => box.close());
