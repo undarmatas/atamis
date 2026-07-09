@@ -10,3 +10,6 @@ node_modules/
 # Working references — not part of the website deliverable
 acor-moe-reference/
 Screenshot*.png
+
+# Raw camera/drone uploads — processed copies live in assets/, keep originals out of the repo
+source-photos/
