@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paslaugos — Atamis</title>
+<meta name="description" content="„Atamis“ paslaugos: architektūra, inžinerinė infrastruktūra, susisiekimo komunikacijos, teritorijų planavimas, viešosios erdvės ir BIM projektai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Page-specific: make the media wrapper a block so its documented
+   1.5:1 aspect-ratio crop applies and titles never overflow the tile. */
+.card-grid .tile-media { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="limit header-row">
+    <a class="logo" href="index.html" aria-label="Atamis — pradžia" data-en-aria="Atamis — home">
+      <span class="logo-stack"><img src="assets/img/atamis-logo.png" alt="Atamis" width="139" height="39"></span>
+    </a>
+    <div class="header-tools">
+      <button class="tool-btn search-btn" aria-label="Paieška" data-en-aria="Search">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><line x1="21" y1="21" x2="15.7" y2="15.7"/></svg>
+      </button>
+      <button class="tool-btn lang-btn" aria-label="Kalba" data-en-aria="Language">EN</button>
+      <button class="tool-btn burger-btn" aria-label="Meniu" data-en-aria="Menu">
+        <span class="burger"><span></span><span></span><span></span></span>
+        <span class="tool-label" data-en="Menu">Meniu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MENU OVERLAY ================= -->
+<div class="menu-overlay" role="dialog" aria-modal="true" aria-label="Meniu" data-en-aria="Menu">
+  <div class="menu-panel-light">
+    <a class="logo" href="index.html"><span class="logo-stack"><img src="assets/img/atamis-logo.png" alt="Atamis"></span></a>
+    <p class="menu-blurb" data-en="Atamis is a Vilnius-based engineering and architecture practice. Since 2006 we have been joining architecture and engineering into one sustainable whole — more than 200 projects delivered every year.<br><br><a href='mailto:info@atamis.lt'>info@atamis.lt</a>">
+      „Atamis“ — inžinerijos ir architektūros studija Vilniuje. Nuo 2006 m. jungiame architektūrą ir inžineriją į vieną tvarią visumą — per metus įgyvendiname daugiau nei 200 projektų.<br><br><a href="mailto:info@atamis.lt">info@atamis.lt</a>
+    </p>
+  </div>
+  <div class="menu-panel-dark">
+    <button class="menu-close" aria-label="Uždaryti" data-en-aria="Close">&times;</button>
+    <nav class="menu-links" aria-label="Pagrindinis meniu">
+      <a href="index.html" data-en="Home">Pradžia</a>
+      <a href="apie.html" data-en="About us">Apie mus</a>
+      <a href="paslaugos.html" data-en="Services">Paslaugos</a>
+      <a href="projektai.html" data-en="Projects">Projektai</a>
+      <a href="kontaktai.html" data-en="Contacts">Kontaktai</a>
+    </nav>
+    <div class="menu-meta">
+      <a href="tel:+37052728334">(+370) 5 2728 334</a>
+      <a href="mailto:info@atamis.lt">info@atamis.lt</a>
+      <a href="https://www.facebook.com/AtamisLT" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SEARCH OVERLAY ================= -->
+<div class="search-overlay" role="dialog" aria-modal="true" aria-label="Paieška" data-en-aria="Search">
+  <button class="search-close" aria-label="Uždaryti" data-en-aria="Close">&times;</button>
+  <div class="search-inner">
+    <label for="site-search" data-en="Search">Paieška</label>
+    <input id="site-search" class="search-input" type="search" placeholder="Ieškoti projektų…" data-en-placeholder="Search projects…" data-target="projektai.html">
+    <p class="search-hint" data-en="Press Enter to search the project archive.">Spauskite „Enter“ — ieškosime projektų archyve.</p>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= LISTING HEAD ================= -->
+<section class="listing-head">
+  <div class="limit">
+    <h1 class="page-title" data-en="Explore our services">Mūsų paslaugos</h1>
+    <div class="search-row">
+      <input class="listing-search" type="search" placeholder="Ieškoti paslaugos ar srities…" data-en-placeholder="Search for a service or a discipline…" aria-label="Paslaugų paieška" data-en-aria="Service search">
+    </div>
+    <div class="filter-chips" aria-label="Filtruoti pagal sritį" data-en-aria="Filter by discipline">
+      <button class="chip active" id="visos" data-cat="all" data-en="All">Visos</button>
+      <button class="chip" id="architektura" data-cat="architektura" data-en="Architecture">Architektūra</button>
+      <button class="chip" id="infrastruktura" data-cat="infrastruktura" data-en="Engineering infrastructure">Inžinerinė infrastruktūra</button>
+      <button class="chip" id="susisiekimas" data-cat="susisiekimas" data-en="Transport infrastructure">Susisiekimo komunikacijos</button>
+      <button class="chip" id="planavimas" data-cat="planavimas" data-en="Territorial planning">Teritorijų planavimas</button>
+      <button class="chip" id="erdves" data-cat="erdves" data-en="Public spaces">Viešosios erdvės</button>
+      <button class="chip" id="bim" data-cat="bim" data-en="BIM">BIM</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES GRID ================= -->
+<div class="limit">
+  <p class="results-meta" aria-live="polite"></p>
+  <div class="card-grid cols-4" data-listing>
+
+    <!-- ARCHITEKTŪRA -->
+    <article class="tile" data-cat="architektura" data-search="Visuomeninių pastatų projektavimas Public building design architektūra architecture">
+      <span class="tile-media"><img src="assets/img/thumbs/telsiu-baseinas.jpg" alt="Telšių plaukimo baseino pastatas" data-en-alt="Telšiai swimming pool building"></span>
+      <h2 class="tile-title" data-en="Public building design">Visuomeninių pastatų projektavimas</h2>
+      <p class="tile-sub" data-en="Architecture">Architektūra</p>
+    </article>
+    <article class="tile" data-cat="architektura" data-search="Komercinių ir gyvenamųjų pastatų projektavimas Commercial and residential design architektūra architecture">
+      <span class="tile-media"><img src="assets/img/thumbs/bio-city.jpg" alt="BIO CITY II biotechnologijų kompleksas Vilniuje" data-en-alt="BIO CITY II biotechnology complex in Vilnius"></span>
+      <h2 class="tile-title" data-en="Commercial and residential design">Komercinių ir gyvenamųjų pastatų projektavimas</h2>
+      <p class="tile-sub" data-en="Architecture">Architektūra</p>
+    </article>
+    <article class="tile" data-cat="architektura" data-search="Sporto statinių projektavimas Sports facility design architektūra architecture">
+      <span class="tile-media"><img src="assets/img/thumbs/taurages-baseinas.jpg" alt="Tauragės baseino sporto kompleksas" data-en-alt="Tauragė swimming pool sports complex"></span>
+      <h2 class="tile-title" data-en="Sports facility design">Sporto statinių projektavimas</h2>
+      <p class="tile-sub" data-en="Architecture">Architektūra</p>
+    </article>
+    <article class="tile" data-cat="architektura" data-search="Interjero projektavimas Interior design architektūra architecture">
+      <span class="tile-media"><img src="assets/img/thumbs/kulturos-centras.jpg" alt="Kultūros centro ir bibliotekos interjeras" data-en-alt="Culture centre and library interior"></span>
+      <h2 class="tile-title" data-en="Interior design">Interjero projektavimas</h2>
+      <p class="tile-sub" data-en="Architecture">Architektūra</p>
+    </article>
+    <article class="tile" data-cat="architektura" data-search="Architektūrinės konsultacijos Architectural consultancy architektūra architecture">
+      <span class="tile-media"><img src="assets/img/thumbs/vadovybes-departamentas.jpg" alt="Vadovybės apsaugos departamento pastatas" data-en-alt="Directorate General of State Protection building"></span>
+      <h2 class="tile-title" data-en="Architectural consultancy">Architektūrinės konsultacijos</h2>
+      <p class="tile-sub" data-en="Architecture">Architektūra</p>
+    </article>
+
+    <!-- INŽINERINĖ INFRASTRUKTŪRA -->
+    <article class="tile" data-cat="infrastruktura" data-search="Vandentiekio ir nuotekų tinklai Water supply and sewerage networks inžinerinė infrastruktūra engineering infrastructure">
+      <span class="tile-media"><img src="assets/img/thumbs/svencioniu-valykla.jpg" alt="Švenčionių nuotekų valykla iš viršaus" data-en-alt="Švenčionys wastewater treatment plant from above" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Water supply and sewerage networks">Vandentiekio ir nuotekų tinklai</h2>
+      <p class="tile-sub" data-en="Engineering infrastructure">Inžinerinė infrastruktūra</p>
+    </article>
+    <article class="tile" data-cat="infrastruktura" data-search="Lietaus nuotekų ir drenažo sistemos Stormwater and drainage systems inžinerinė infrastruktūra engineering infrastructure">
+      <span class="tile-media"><img src="assets/img/thumbs/paplaujos-bulvaras.jpg" alt="Paplaujos bulvaras Vilniuje" data-en-alt="Paplauja boulevard in Vilnius" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Stormwater and drainage systems">Lietaus nuotekų ir drenažo sistemos</h2>
+      <p class="tile-sub" data-en="Engineering infrastructure">Inžinerinė infrastruktūra</p>
+    </article>
+    <article class="tile" data-cat="infrastruktura" data-search="Elektros ir ryšių tinklai Power and communication networks inžinerinė infrastruktūra engineering infrastructure">
+      <span class="tile-media"><img src="assets/img/thumbs/panevezio-siaurine.jpg" alt="Panevėžio Šiaurinės gatvės infrastruktūra" data-en-alt="Panevėžys Šiaurinė street infrastructure" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Power and communication networks">Elektros ir ryšių tinklai</h2>
+      <p class="tile-sub" data-en="Engineering infrastructure">Inžinerinė infrastruktūra</p>
+    </article>
+    <article class="tile" data-cat="infrastruktura" data-search="Hidrotechniniai statiniai Hydraulic structures inžinerinė infrastruktūra engineering infrastructure">
+      <span class="tile-media"><img src="assets/img/thumbs/kupiskio-vandenys.jpg" alt="Kupiškio vandenvietės statiniai" data-en-alt="Kupiškis waterworks structures" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Hydraulic structures">Hidrotechniniai statiniai</h2>
+      <p class="tile-sub" data-en="Engineering infrastructure">Inžinerinė infrastruktūra</p>
+    </article>
+    <article class="tile" data-cat="infrastruktura" data-search="Projekto vykdymo priežiūra Construction supervision inžinerinė infrastruktūra engineering infrastructure">
+      <span class="tile-media"><img src="assets/img/thumbs/vydunelio-darzelis.jpg" alt="Vaikų darželio Vydūnėlis statybos" data-en-alt="Vydūnėlis kindergarten construction" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Construction supervision">Projekto vykdymo priežiūra</h2>
+      <p class="tile-sub" data-en="Engineering infrastructure">Inžinerinė infrastruktūra</p>
+    </article>
+
+    <!-- SUSISIEKIMO KOMUNIKACIJOS -->
+    <article class="tile" data-cat="susisiekimas" data-search="Gatvių ir kelių projektavimas Street and road design susisiekimo komunikacijos transport infrastructure">
+      <span class="tile-media"><img src="assets/img/thumbs/panevezio-siaurine.jpg" alt="Panevėžio Šiaurinės gatvės sankryža" data-en-alt="Panevėžys Šiaurinė street junction" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Street and road design">Gatvių ir kelių projektavimas</h2>
+      <p class="tile-sub" data-en="Transport infrastructure">Susisiekimo komunikacijos</p>
+    </article>
+    <article class="tile" data-cat="susisiekimas" data-search="Transporto eismo tyrimai ir modeliavimas Traffic studies and modelling susisiekimo komunikacijos transport infrastructure">
+      <span class="tile-media"><img src="assets/img/thumbs/neries-kaire.jpg" alt="Neries kairiosios krantinės eismo erdvės" data-en-alt="Neris left embankment traffic spaces" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Traffic studies and modelling">Transporto eismo tyrimai ir modeliavimas</h2>
+      <p class="tile-sub" data-en="Transport infrastructure">Susisiekimo komunikacijos</p>
+    </article>
+    <article class="tile" data-cat="susisiekimas" data-search="Geležinkelių infrastruktūros projektai Railway infrastructure projects susisiekimo komunikacijos transport infrastructure">
+      <span class="tile-media"><img src="assets/img/thumbs/paneriu-planas.jpg" alt="Aukštųjų Panerių pramoninis rajonas iš viršaus" data-en-alt="Aukštieji Paneriai industrial district from above" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Railway infrastructure projects">Geležinkelių infrastruktūros projektai</h2>
+      <p class="tile-sub" data-en="Transport infrastructure">Susisiekimo komunikacijos</p>
+    </article>
+    <article class="tile" data-cat="susisiekimas" data-search="Dviračių ir pėsčiųjų infrastruktūra Cycling and pedestrian infrastructure susisiekimo komunikacijos transport infrastructure">
+      <span class="tile-media"><img src="assets/img/thumbs/neries-krantine.jpg" alt="Neries krantinės dviračių gatvė" data-en-alt="Neris embankment bicycle street" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Cycling and pedestrian infrastructure">Dviračių ir pėsčiųjų infrastruktūra</h2>
+      <p class="tile-sub" data-en="Transport infrastructure">Susisiekimo komunikacijos</p>
+    </article>
+
+    <!-- TERITORIJŲ PLANAVIMAS -->
+    <article class="tile" data-cat="planavimas" data-search="Bendrieji ir detalieji planai Master and detailed plans teritorijų planavimas territorial planning">
+      <span class="tile-media"><img src="assets/img/thumbs/birstono-planas.jpg" alt="Birštono miesto teritorijos planas" data-en-alt="Birštonas town territory plan" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Master and detailed plans">Bendrieji ir detalieji planai</h2>
+      <p class="tile-sub" data-en="Territorial planning">Teritorijų planavimas</p>
+    </article>
+    <article class="tile" data-cat="planavimas" data-search="Specialieji planai Special plans teritorijų planavimas territorial planning">
+      <span class="tile-media"><img src="assets/img/thumbs/paneriu-planas.jpg" alt="Aukštųjų Panerių teritorijos vaizdas iš viršaus" data-en-alt="Aukštieji Paneriai territory from above" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Special plans">Specialieji planai</h2>
+      <p class="tile-sub" data-en="Territorial planning">Teritorijų planavimas</p>
+    </article>
+    <article class="tile" data-cat="planavimas" data-search="SPAV dokumentai ir galimybių studijos SEA documents and feasibility studies teritorijų planavimas territorial planning">
+      <span class="tile-media"><img src="assets/img/thumbs/birstono-planas.jpg" alt="Birštono teritorijos planavimo dokumentas" data-en-alt="Birštonas territorial planning document" loading="lazy"></span>
+      <h2 class="tile-title" data-en="SEA documents and feasibility studies">SPAV dokumentai ir galimybių studijos</h2>
+      <p class="tile-sub" data-en="Territorial planning">Teritorijų planavimas</p>
+    </article>
+
+    <!-- VIEŠOSIOS ERDVĖS -->
+    <article class="tile" data-cat="erdves" data-search="Parkai skverai ir aikštės Parks squares and plazas viešosios erdvės public spaces">
+      <span class="tile-media"><img src="assets/img/thumbs/joniskelio-parkas.jpg" alt="Joniškėlio sodo parko estrada" data-en-alt="Joniškėlis garden park amphitheatre" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Parks, squares and plazas">Parkai, skverai ir aikštės</h2>
+      <p class="tile-sub" data-en="Public spaces">Viešosios erdvės</p>
+    </article>
+    <article class="tile" data-cat="erdves" data-search="Krantinės ir paplūdimiai Embankments and beaches viešosios erdvės public spaces">
+      <span class="tile-media"><img src="assets/img/thumbs/neries-krantine.jpg" alt="Neries krantinė Vilniuje" data-en-alt="Neris embankment in Vilnius" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Embankments and beaches">Krantinės ir paplūdimiai</h2>
+      <p class="tile-sub" data-en="Public spaces">Viešosios erdvės</p>
+    </article>
+
+    <!-- BIM -->
+    <article class="tile" data-cat="bim" data-search="Projektavimas BIM aplinkoje Design in a BIM environment BIM">
+      <span class="tile-media"><img src="assets/img/thumbs/policijos-komisariatas.jpg" alt="Vilniaus miesto policijos komisariato pastatas" data-en-alt="Vilnius city police headquarters building" loading="lazy"></span>
+      <h2 class="tile-title" data-en="Design in a BIM environment">Projektavimas BIM aplinkoje</h2>
+      <p class="tile-sub">BIM</p>
+    </article>
+    <article class="tile" data-cat="bim" data-search="Rekonstrukcijų BIM projektai BIM reconstruction projects BIM">
+      <span class="tile-media"><img src="assets/img/thumbs/vadovybes-departamentas.jpg" alt="Vadovybės apsaugos departamento rekonstrukcija" data-en-alt="State Protection Department reconstruction" loading="lazy"></span>
+      <h2 class="tile-title" data-en="BIM reconstruction projects">Rekonstrukcijų BIM projektai</h2>
+      <p class="tile-sub">BIM</p>
+    </article>
+
+  </div>
+  <div class="pagination"></div>
+</div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="limit">
+    <div class="footer-cols">
+      <div>
+        <h4 data-en="Social media">Socialiniai tinklai</h4>
+        <div class="social-row">
+          <a href="https://www.facebook.com/AtamisLT" target="_blank" rel="noopener" aria-label="Atamis Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V21h3.4z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 data-en="What we do">Ką darome</h4>
+        <ul>
+          <li><a href="projektai.html" data-en="Projects">Projektai</a></li>
+          <li><a href="paslaugos.html" data-en="Services">Paslaugos</a></li>
+          <li><a href="apie.html" data-en="About us">Apie mus</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="Quick links">Nuorodos</h4>
+        <ul>
+          <li><a href="kontaktai.html" data-en="Contacts">Kontaktai</a></li>
+          <li><a href="kontaktai.html#karjera" data-en="Careers">Karjera</a></li>
+          <li><a href="https://atamis.lt" target="_blank" rel="noopener">atamis.lt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="Company details">Rekvizitai</h4>
+        <ul>
+          <li><span class="footer-plain" data-en="Žirmūnų st. 139, LT-09120 Vilnius">Žirmūnų g. 139, LT-09120 Vilnius</span></li>
+          <li><span class="footer-plain" data-en="Company code 300564438">Įmonės kodas 300564438</span></li>
+          <li><span class="footer-plain" data-en="VAT code LT100002411510">PVM kodas LT100002411510</span></li>
+          <li><a href="tel:+37052728334">(+370) 5 2728 334</a></li>
+          <li><a href="mailto:info@atamis.lt">info@atamis.lt</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <a class="logo" href="index.html" aria-label="Atamis">
+        <span class="logo-stack"><img src="assets/img/atamis-logo-white.png" alt="Atamis"></span>
+      </a>
+      <p class="footer-copy">© 2026 UAB „Atamis“</p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" aria-label="Į viršų" data-en-aria="Back to top">
+  <span aria-hidden="true">&#8593;</span>
+  <span data-en="Back to top">Į viršų</span>
+</button>
+
+<script src="site.js" defer></script>
+<script>
+/* Preselect a discipline chip from the URL hash (index.html#architektura etc.).
+   site.js is deferred, so its chip handlers exist by DOMContentLoaded. */
+document.addEventListener('DOMContentLoaded', function () {
+  function selectFromHash() {
+    var id = location.hash.replace('#', '');
+    if (!id) return;
+    var chip = document.getElementById(id);
+    if (chip && chip.classList.contains('chip') && !chip.classList.contains('active')) chip.click();
+  }
+  selectFromHash();
+  window.addEventListener('hashchange', selectFromHash);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontaktai — Atamis</title>
+<meta name="description" content="Susisiekite su UAB „Atamis“ — Žirmūnų g. 139, Vilnius. Telefonas, el. paštas, rekvizitai ir karjeros galimybės inžinerijos ir architektūros studijoje.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.band .sec-heading { margin-top: 0; margin-bottom: clamp(28px, 4vw, 56px); }
+.office-card .tile-media { display: block; }
+.career-copy { max-width: 65ch; font: 400 18px/1.7 var(--sans); color: var(--gray-dark); margin-bottom: 34px; }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="limit header-row">
+    <a class="logo" href="index.html" aria-label="Atamis — pradžia" data-en-aria="Atamis — home">
+      <span class="logo-stack"><img src="assets/img/atamis-logo.png" alt="Atamis" width="139" height="39"></span>
+    </a>
+    <div class="header-tools">
+      <button class="tool-btn search-btn" aria-label="Paieška" data-en-aria="Search">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><line x1="21" y1="21" x2="15.7" y2="15.7"/></svg>
+      </button>
+      <button class="tool-btn lang-btn" aria-label="Kalba" data-en-aria="Language">EN</button>
+      <button class="tool-btn burger-btn" aria-label="Meniu" data-en-aria="Menu">
+        <span class="burger"><span></span><span></span><span></span></span>
+        <span class="tool-label" data-en="Menu">Meniu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MENU OVERLAY ================= -->
+<div class="menu-overlay" role="dialog" aria-modal="true" aria-label="Meniu" data-en-aria="Menu">
+  <div class="menu-panel-light">
+    <a class="logo" href="index.html"><span class="logo-stack"><img src="assets/img/atamis-logo.png" alt="Atamis"></span></a>
+    <p class="menu-blurb" data-en="Atamis is a Vilnius-based engineering and architecture practice. Since 2006 we have been joining architecture and engineering into one sustainable whole — more than 200 projects delivered every year.<br><br><a href='mailto:info@atamis.lt'>info@atamis.lt</a>">
+      „Atamis“ — inžinerijos ir architektūros studija Vilniuje. Nuo 2006 m. jungiame architektūrą ir inžineriją į vieną tvarią visumą — per metus įgyvendiname daugiau nei 200 projektų.<br><br><a href="mailto:info@atamis.lt">info@atamis.lt</a>
+    </p>
+  </div>
+  <div class="menu-panel-dark">
+    <button class="menu-close" aria-label="Uždaryti" data-en-aria="Close">&times;</button>
+    <nav class="menu-links" aria-label="Pagrindinis meniu">
+      <a href="index.html" data-en="Home">Pradžia</a>
+      <a href="apie.html" data-en="About us">Apie mus</a>
+      <a href="paslaugos.html" data-en="Services">Paslaugos</a>
+      <a href="projektai.html" data-en="Projects">Projektai</a>
+      <a href="kontaktai.html" data-en="Contacts">Kontaktai</a>
+    </nav>
+    <div class="menu-meta">
+      <a href="tel:+37052728334">(+370) 5 2728 334</a>
+      <a href="mailto:info@atamis.lt">info@atamis.lt</a>
+      <a href="https://www.facebook.com/AtamisLT" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SEARCH OVERLAY ================= -->
+<div class="search-overlay" role="dialog" aria-modal="true" aria-label="Paieška" data-en-aria="Search">
+  <button class="search-close" aria-label="Uždaryti" data-en-aria="Close">&times;</button>
+  <div class="search-inner">
+    <label for="site-search" data-en="Search">Paieška</label>
+    <input id="site-search" class="search-input" type="search" placeholder="Ieškoti projektų…" data-en-placeholder="Search projects…" data-target="projektai.html">
+    <p class="search-hint" data-en="Press Enter to search the project archive.">Spauskite „Enter“ — ieškosime projektų archyve.</p>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= PAGE TITLE ================= -->
+<section class="listing-head">
+  <div class="limit">
+    <h1 class="page-title" data-en="Find us">Kontaktai</h1>
+  </div>
+</section>
+
+<!-- ================= TAB NAV ================= -->
+<nav class="tab-nav" aria-label="Puslapio skiltys" data-en-aria="Page sections">
+  <ul class="limit">
+    <li><a href="#biuras" class="active" data-en="Office">Biuras</a></li>
+    <li><a href="#rekvizitai" data-en="Company details">Rekvizitai</a></li>
+    <li><a href="#karjera" data-en="Careers">Karjera</a></li>
+  </ul>
+</nav>
+
+<!-- ================= BIURAS ================= -->
+<section class="band" id="biuras">
+  <div class="limit">
+    <h2 class="sec-heading rv">Vilnius</h2>
+    <div class="card-grid">
+      <article class="office-card rv">
+        <span class="tile-media"><img src="assets/img/wide/neris-wide.jpg" alt="Vilnius ir Neries upė iš paukščio skrydžio" data-en-alt="Aerial view of Vilnius and the river Neris" loading="lazy"></span>
+        <h3 class="office-title" data-en="Žirmūnai business centre">Žirmūnų verslo centras</h3>
+        <div class="office-lines">
+          <span data-en="Žirmūnų st. 139, LT-09120 Vilnius">Žirmūnų g. 139, LT-09120 Vilnius</span>
+          <span data-en="4th floor">4 aukštas</span>
+          <a href="https://maps.google.com/?q=%C5%BDirm%C5%ABn%C5%B3%20g.%20139%2C%20Vilnius" target="_blank" rel="noopener" data-en="Show on map">Rodyti žemėlapyje</a>
+        </div>
+      </article>
+      <article class="office-card rv">
+        <h3 class="office-title" data-en="Get in touch">Pasiteirauti</h3>
+        <div class="office-lines">
+          <a href="tel:+37052728334">(+370) 5 2728 334</a>
+          <a href="mailto:info@atamis.lt">info@atamis.lt</a>
+          <a href="https://www.facebook.com/AtamisLT" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </article>
+      <article class="office-card rv">
+        <h3 class="office-title" data-en="Follow us">Sekite mus</h3>
+        <div class="office-lines">
+          <a href="https://www.facebook.com/AtamisLT" target="_blank" rel="noopener">facebook.com/AtamisLT</a>
+          <a href="https://atamis.lt" target="_blank" rel="noopener">atamis.lt</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REKVIZITAI ================= -->
+<section class="band gray" id="rekvizitai">
+  <div class="limit">
+    <h2 class="sec-heading rv" data-en="Company details">Rekvizitai</h2>
+    <div class="def-list">
+      <div class="def-item rv">
+        <h3 data-en="Company">Įmonė</h3>
+        <p data-en="UAB „Atamis“ · Company code 300564438 · VAT code LT100002411510">UAB „Atamis“ · Įmonės kodas 300564438 · PVM kodas LT100002411510</p>
+      </div>
+      <div class="def-item rv">
+        <h3 data-en="Banks">Bankai</h3>
+        <p>AB SEB bankas — LT17 7044 0600 0550 6676 · Luminor Bank AS — LT69 4010 0510 0366 9149</p>
+      </div>
+      <div class="def-item rv">
+        <h3 data-en="Standards">Standartai</h3>
+        <p data-en="LEAN · ISO 9001:2015 · ISO 14001:2015 · FIDIC principles">LEAN · ISO 9001:2015 · ISO 14001:2015 · FIDIC principai</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KARJERA ================= -->
+<section class="band" id="karjera">
+  <div class="limit">
+    <h2 class="sec-heading rv" data-en="Careers">Karjera</h2>
+    <p class="career-copy rv" data-en="We are looking for professionals across disciplines — architects, engineers, project managers. Send your CV and a short introduction — we reply within one working day.">Ieškome įvairių krypčių profesionalų — architektų, inžinierių, projektų vadovų. Atsiųskite CV ir prisistatymą — atsakysime per vieną darbo dieną.</p>
+    <a class="section-link rv" href="mailto:info@atamis.lt"><span data-en="Send your CV">Siųsti CV</span> <span class="cta-arrow">&#10230;</span></a>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="limit">
+    <div class="footer-cols">
+      <div>
+        <h4 data-en="Social media">Socialiniai tinklai</h4>
+        <div class="social-row">
+          <a href="https://www.facebook.com/AtamisLT" target="_blank" rel="noopener" aria-label="Atamis Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V21h3.4z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 data-en="What we do">Ką darome</h4>
+        <ul>
+          <li><a href="projektai.html" data-en="Projects">Projektai</a></li>
+          <li><a href="paslaugos.html" data-en="Services">Paslaugos</a></li>
+          <li><a href="apie.html" data-en="About us">Apie mus</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="Quick links">Nuorodos</h4>
+        <ul>
+          <li><a href="kontaktai.html" data-en="Contacts">Kontaktai</a></li>
+          <li><a href="kontaktai.html#karjera" data-en="Careers">Karjera</a></li>
+          <li><a href="https://atamis.lt" target="_blank" rel="noopener">atamis.lt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="Company details">Rekvizitai</h4>
+        <ul>
+          <li><span class="footer-plain" data-en="Žirmūnų st. 139, LT-09120 Vilnius">Žirmūnų g. 139, LT-09120 Vilnius</span></li>
+          <li><span class="footer-plain" data-en="Company code 300564438">Įmonės kodas 300564438</span></li>
+          <li><span class="footer-plain" data-en="VAT code LT100002411510">PVM kodas LT100002411510</span></li>
+          <li><a href="tel:+37052728334">(+370) 5 2728 334</a></li>
+          <li><a href="mailto:info@atamis.lt">info@atamis.lt</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <a class="logo" href="index.html" aria-label="Atamis">
+        <span class="logo-stack"><img src="assets/img/atamis-logo-white.png" alt="Atamis"></span>
+      </a>
+      <p class="footer-copy">© 2026 UAB „Atamis“</p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" aria-label="Į viršų" data-en-aria="Back to top">
+  <span aria-hidden="true">&#8593;</span>
+  <span data-en="Back to top">Į viršų</span>
+</button>
+
+<script src="site.js" defer></script>
+</body>
+</html>
